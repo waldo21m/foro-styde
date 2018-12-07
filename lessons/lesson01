@@ -1,0 +1,63 @@
+Nuevo curso: Crea una aplicación con Laravel 5.3
+
+El día de hoy es muy importante en Styde, porque vamos a comenzar la segunda
+edición de nuestro curso de creación de aplicaciones con Laravel. En esta
+oportunidad vamos a desarrollar el nuevo foro de Styde el cual esperamos que
+se convierta en una importante vía de comunicación para la comunidad.
+
+Actualmente usamos Slack a diario, y Slack es una excelente aplicación de
+mensajería, sin embargo resulta difícil a veces organizar y hacer seguimiento
+a los mensajes y mantener un registro de los mismos, así que esperamos
+solucionar estos problemas con nuestro nuevo foro.
+
+Notas:
+
+Para este proyecto vamos a utilizar para el back end Laravel 5.3 con PHP 7 y
+para el front end Bootstrap, Sass y Vue.js. Además, utilizaremos de forma muy
+extendida la metodología TDD (o desarrollo guiado por pruebas automatizadas)
+sobre las pruebas tradicionales del navegador.
+
+¿Por qué TDD?
+TDD (o Test Driven Development) nos permite enfocarnos en la funcionalidad de
+la aplicación, dejando a un lado aspectos como el diseño que pueden abordarse
+una vez que “la prueba pase”, es decir que la funcionalidad básica esté lista.
+
+Módulos
+El curso lo presentaremos en tres partes, Back end, Front end y Comportamiento,
+y crearemos los siguientes módulos principales:
+
+    - Categorías
+    - Posts
+    - Comentarios
+    - Votos
+    - Usuarios
+    - Perfiles
+    - Autenticación
+
+Vamos a practicar lo aprendiendo hasta ahora
+
+¿Has visto nuestros cursos de novedades de Laravel 5.1, 5.2, 5.3 y el curso de
+programación orientada a objetos?
+
+    - Curso de Laravel 5.1
+    - Curso de novedades en Laravel 5.2
+    - Curso de novedades en Laravel 5.3
+    - Curso de programación orientada a objetos con PHP
+    - Curso básico de Eloquent con Laravel 5.1 y Curso avanzado de Eloquent ORM
+
+¿Ya viste los cursos de Front end y otras tecnologías?
+
+    - Curso de Sass
+    - Curso de Vue.js
+    - Curso de Git y GitHub
+    - Curso de Gulp
+
+En este curso vamos a poner en práctica todos esos conocimientos mientras
+desarrollamos una aplicación real, y si no has completado los otros cursos,
+no te preocupes, nos aseguraremos de enlazar el material relacionado en cada
+lección para que puedas ponerte al día.
+
+Mis apuntes:
+
+No coloco ningún link porque este es un curso pago... Y todos los demás links
+son cursos pagos. Cuando el año expire no tendría acceso a no ser que pague.

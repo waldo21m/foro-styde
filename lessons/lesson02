@@ -1,0 +1,102 @@
+Instalación y configuración de un nuevo proyecto con Laravel 5.3
+
+En esta lección comenzamos a instalar un nuevo proyecto en Laravel 5.3, y a hacer
+las configuraciones iniciales del proyecto, incluyendo la descarga de 2 
+dependencias.
+
+Notas:
+
+Requisitos:
+Para trabajar con el desarrollo de la aplicación necesitas:
+
+Un entorno de trabajo 
+(https://styde.net/instalacion-y-configuracion-de-entornos-de-trabajo/)
+con PHP y MySQL (o MariaDB), independientemente del sistema operativo que uses.
+En Styde, tenemos tutoriales y lecciones relacionadas, en caso que necesites 
+ayuda:
+
+    + Para Windows:
+        - Laragon, un entorno de desarrollo para Laravel en Windows
+	  https://styde.net/laragon-un-entorno-de-desarrollo-para-laravel-en-windows/
+        - XAMPP, https://www.apachefriends.org/es/index.html
+        - Configuración de Homestead en Windows 10.
+	  https://styde.net/configuracion-de-homestead-en-windows-10/
+    + Para Linux:
+        - Cómo instalar LAMP en Ubuntu 14.04 LTS, paso a paso
+	  https://styde.net/como-instalar-lamp-en-ubuntu-linux/
+        - Instalación de stack LEMP
+    + Para OSX: Laravel Valet
+      https://styde.net/laravel-valet/
+
+Un IDE como PHPStorm, Netbeans, Aptana o un editor de texto como Sublime Text,
+Atom, entre otros.
+
+Instalación y configuración del proyecto
+Para crear la aplicación ejecuta:
+
+composer create-project laravel/laravel foro "5.3.*"
+
+Nota: Si estás viendo esta lección cuando Laravel 5.4 ya está disponible, te
+recomendamos que instales la versión 5.3 para seguir el curso con la versión
+usada. En caso de estar instalando el proyecto a partir de la clonación o
+descarga desde Github debes crear manualmente el archivo .env haciendo una
+copia del archivo .env.example y luego generar una nueva API key con php
+artisan key:generate
+
+Crea una base de datos llamada foro, usando la herramienta que tengas
+disponible en tu entorno: phpMyAdmin, Sequel Pro, etc.
+
+Crea un Virtual Host para la aplicacion: foro.app. Si necesitas ayuda:
+
+    - Creando Virtual Hosts con Apache en Windows para WAMP o XAMPP
+      https://styde.net/creando-virtual-hosts-con-apache-en-windows-para-wamp-o-xampp/	
+    - Cómo crear Virtual Hosts con Apache para Linux y Mac
+      https://styde.net/como-crear-virtual-hosts-con-apache-para-linux-y-mac/
+
+Instala el sistema de autenticación que viene por defecto en Laravel ejecutando:
+
+php artisan make:auth
+
+Nota: Para más detalles sobre este sistema consulta: Registro, login y
+recuperación de contraseña con make:auth en Laravel 5.3
+
+Modifica el archivo .env para configurar la variable de entorno
+(https://styde.net/variables-de-entorno-en-laravel/) para URL de la
+aplicación y las credenciales de la base de datos, es decir, edita las 
+siguientes llaves:
+
+APP_URL=http://foro.app
+
+DB_DATABASE=foro
+DB_USERNAME=tu-username
+DB_PASSWORD=tu-password
+
+Cambia el nombre de la aplicación en el archivo config/app.php modificando
+la clave 'name' => 'Foro'
+
+Descarga las traducciones a español desde el repositorio de GitHub 
+https://github.com/caouecs/Laravel-lang y configura la clave locale en el
+archivo config/app.php
+
+Nota: Para conocer más sobre el componente de traducciones de Laravel, revisa
+el tutorial: Cómo usar el componente de traducciones de Laravel
+https://styde.net/como-usar-el-componente-de-traducciones-de-laravel/
+
+Instala dos paquetes de terceros que usaremos en la aplicación:
+
+    - styde/html (https://github.com/StydeNet/html)
+    - graham-campbell/markdown 
+      (https://github.com/GrahamCampbell/Laravel-Markdown)
+
+En Styde, tenemos una serie de tutoriales relacionados al paquete Styde\Html,
+(https://styde.net/tag/stydehtml/) para su instalación y configuración puedes
+consultar: Instalación del paquete Styde\Html 
+(https://styde.net/instalacion-del-paquete-styde-html/)
+
+Por último, para comprobar que todo esté funcionando correctamente ejecutamos
+las pruebas con el comando:
+
+vendor/bin/phpunit
+
+Nota: En el video se usó un alias de este comando. Puedes crear los tuyos
+guiándote de este tutorial: Alias de comandos para la consola Windows/Linux/Mac
