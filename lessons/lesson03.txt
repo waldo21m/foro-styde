@@ -1,0 +1,132 @@
+Configuración para el entorno de pruebas automatizadas (PHPUnit)
+
+En esta lección vamos a configurar la base de datos de prueba y vamos a preparar
+la estructura básica para agregar pruebas automatizadas a nuestra aplicación.
+
+Notas:
+
+Es muy importante tener dos base de datos en nuestro proyecto local:
+
+    - Una para las pruebas que realizaremos en el navegador: foro.
+    - Otra para las pruebas automatizadas: foro_tests.
+
+Nota: Puedes asignarle el nombre que quieras, pero es importante que sean 2. Esto
+es porque nosotros no queremos que las pruebas que realicemos en el navegador
+puedan afectar el resultado de las pruebas automatizadas y viceversa.
+
+Para ejecutar las migraciones que creen las tablas para la base de datos foro,
+ejecutamos:
+
+php artisan migrate
+
+Sin embargo, para ejecutar las migraciones en la base de datos foro_tests debemos
+hacer algunas configuraciones:
+
+Crear una nueva conexión de base de datos o DB_CONNECTION en el archivo
+config/database.php que permitirá trabajar con la base de datos para las pruebas
+automatizadas:
+
+'mysql_tests' => [
+    'driver' => 'mysql',
+    'host' => env('DB_HOST', 'localhost'),
+    'port' => env('DB_PORT', '3306'),
+    'database' => env('DB_DATABASE_TESTS', 'foro_tests'),
+    'username' => env('DB_USERNAME', 'forge'),
+    'password' => env('DB_PASSWORD', ''),
+    'charset' => 'utf8',
+    'collation' => 'utf8_unicode_ci',
+    'prefix' => '',
+    'strict' => true,
+    'engine' => null,
+],
+
+Es decir, que por defecto DB_CONNECTION seguirá siendo mysql con la configuración
+de nuestra base de datos foro, pero cuando queremos trabajar con la base de datos
+foro_tests nos referiremos a la conexión mysql_tests. Así que para ejecutar las
+migraciones para esta base de datos, escribimos en consola:
+
+php artisan migrate --database=mysql_tests
+
+También debemos asegurarnos que cada vez que se ejecuten las pruebas se haga con
+la base de datos correcta y esto lo logramos modificando el archivo phpunit.xml
+con el cual se sobrescriben algunas variables de entorno al momento de ejecutar
+las pruebas, es decir, agregamos:
+
+<env name="DB_CONNECTION" value="mysql_tests"/>
+
+De esta manera, Laravel tomará como base de datos para las pruebas a foro_tests.
+
+Ahora para ejecutar las pruebas automatizadas usamos el comando:
+
+vendor/bin/phpunit
+
+Nota: Puedes crear alias de comandos para la consola Windows/Linux/Mac.
+https://styde.net/alias-de-comandos-para-la-consola-windowslinuxmac/
+
+Para probar que se está usando la bases de datos correcta, vamos a modificar la
+prueba que viene por defecto en /tests/ExampleTest.php para ahora usar la ruta
+de /routes/api.php.
+
+Nota: Este grupo de rutas (https://styde.net/grupos-de-rutas-en-laravel-5/) se
+encuentra configurado en el archivo /app/Providers/RouteServiceProvider.php
+como lo vimos en la lección Cambios en el RouteServiceProvider en Laravel 5.2.27
+Además recuerda que a partir de Laravel 5.3 hubo cambios en la estructura de las
+carpetas y rutas de una aplicación.
+
+En este caso, la ruta /api/user requiere que el usuario esté conectado, es decir,
+que la ruta está siendo restringida con el middleware auth pasándole el parámetro
+api así middleware('auth:api').
+
+Nota: Para saber más puedes mirar las lecciones sobre: Autenticación múltiple a
+partir de Laravel 5.2 y Autenticación basada en token en Laravel 5.2
+(https://styde.net/autenticacion-basado-en-token-en-laravel-5-2/)
+
+Así que debemos crear un usuario para trabajar en la prueba usando model factory
+(https://styde.net/migraciones-seeders-y-model-factories/) de User que viene por
+defecto en Laravel y se encuentra en /database/factories/ModelFactory.php
+
+Con el método actingAs de Laravel puedes hacer que un usuario creado en una prueba
+se conecte a la aplicación, este método acepta como segundo argumento opcional el
+driver sobre el cual se quiere conectar como por ejemplo:
+
+public function testBasicExample()
+{
+    $user = factory(App\User::class)->create([
+         'name' => 'Duilio Palacios',
+    ]);
+
+    $this->actingAs($user, 'api');
+
+    $this->visit('/api/user')
+         ->see('Duilio Palacios');
+}
+
+Importante: las pruebas automatizadas deben pasar o fallar siempre sin depender
+de factores externos  o de otras pruebas y además deben ser rápidas y la mejor
+forma que hemos conseguido para esto es crear una base de datos de prueba con
+la estructura más actual de las migraciones pero sin datos, y antes de ejecutar
+cada prueba vamos a hacer “seed” de los datos estrictamente necesarios para la
+misma (usando model factories en caso de requerirlo). Por ejemplo imaginemos que
+un usuario puede editar un post, los datos necesarios en este caso son:
+
+    1. Crear un usuario que va a editar el post
+    2. Crear un post a editar.
+
+Una vez que la prueba termine de ejecutarse (pase o falle) nosotros queremos
+eliminar el usuario y el post, de manera que cuando ejecutemos la prueba
+nuevamente no obtengamos un error inesperado como por ejemplo que el usuario
+ya existe.
+
+Hay dos formas de lograr esto, usando uno de los 2 traits que Laravel nos
+provee para el desarrollo de pruebas:
+
+    - Illuminate\Foundation\Testing\DatabaseMigrations con el cual se ejecutará
+      nuevamente todas las migraciones con migrate:refresh cada vez que se
+      inicie un método de una prueba.
+    - Illuminate\Foundation\Testing\DatabaseTransactions que hace uso de
+      transacciones de base de tatos para eliminar los datos creados por la
+      prueba, al finalizar ésta. Por supuesto, ésta es la opción más rápida.
+
+Nota: Puedes conocer más en: Traits para el desarrollo de pruebas de integración
+en Laravel.
+https://styde.net/traits-para-el-desarrollo-de-pruebas-de-integracion-en-laravel/
