@@ -1,0 +1,103 @@
+Creación y configuración de un repositorio de Git para nuestro proyecto en Laravel 5.3
+
+En esta lección vamos a crear un nuevo repositorio de Git tanto en local como en
+remoto usando GitHub y vamos a hacer nuestro primer commit. El control de
+versiones nos permitirá trabajar con nuestro proyecto de manera segura
+manteniendo un historial de todos los cambios que vayamos realizando en nuestro
+código, no sólo es una herramienta útil sino que para muchos es algo
+indispensable ya que podremos estar seguros de que nuestro código siempre estará
+protegido incluso si algo le llegara a pasar a nuestra computadora, así que vamos
+a ver cómo podemos crear nuestro repositorio y cómo podemos resguardarlo en un
+servidor remoto usando GitHub.
+
+Notas:
+
+Iniciar con un repositorio en git es muy sencillo ya que basta con ir a la
+terminal y dirigirnos al directorio donde tenemos nuestro proyecto y una vez ahí
+debemos ejecutar el comando necesario para inicializar el repositorio de manera
+local:
+
+# Dirigirnos a la carpeta del proyecto
+cd /ruta/del/proyecto
+
+# Inicializar el repositorio
+git init
+
+Esto nos va a generar una carpeta oculta llamada .git que va a contener la
+“base de datos” con todos los cambios que vayamos haciendo a nuestro código,
+la cual es increíblemente ligera, así que no tendrás que preocuparte por que
+ocupe mucho espacio en tu disco duro.
+
+Ya que hayamos inicializado el repositorio vamos a poder empezar a rastrear
+todos los cambios que vayamos haciendo al código, sin embargo, primero debemos
+decirle a git cuáles son los archivos que queremos estar vigilando con el
+controlador de versiones. Para poder ver cómo se encuentra el status de nuestro
+repositorio y poder ver los archivos que se empezarán a rastrear podemos
+ejecutar el siguiente código en la consola:
+
+git status
+
+Esto mostrará todos los archivos en color rojo indicandome que aún no se
+encuentran dentro del área de stage, la cual es la que va a monitorear los
+cambios en el código, para agregar todos los archivos debemos ejecutar el
+siguiente comando:
+
+git add .
+
+Y seguido a esto debemos crear nuestro primer commit, que es una especie de
+checkpoint e indica que todo el código hasta el momento en que registramos
+el commit debe estar reguardado, el commit lo podemos crear con el siguiente
+comando:
+
+git commit -m "Mensaje del commit"
+
+Aquí nosotros debemos indicar un mensaje indicando el motivo de este commit
+por lo que debe ser algo que describa la funcionalidad del código o el motivo
+del por qué se hizo ese commit.
+
+Con esto ya tenemos todos los archivos en nuestro repositorio de git, pero hay
+ocasiones en las que deseamos excluir algunos archivos o directorios de nuestro
+repositorio, tales como son la carpeta node_modules y vendor en nuestros
+proyectos de Laravel, afortunadamente esto ya viene pre-configurado con un
+archivo .gitignore ya que dentro de él se listan todos los archivos y/o
+directorios a los cuales no vamos a estar monitoreando con git.
+
+Lo siguiente que debemos hacer es resguardar nuestros commits en un repositorio
+remoto, ya que es ahí donde podemos hacer que otras personas puedan colaborar
+con nosotros en el caso de que así lo desearamos, para esto debemos contar con
+al menos un commit y si queremos revisar nuestro historial para saber cuáles
+son nuestros commits podemos ejecutar el siguiente comando:
+
+git log
+
+Esto nos va a mostrar un listado detallado de todos los commits que tenemos en
+nuestro repositorio.
+
+Ahora debemos crear un repositorio remoto, para esto tenemos una serie de
+opciones como lo son GitHub y Bitbucket, una vez que lo tengamos listo debemos
+enlazarlo al repositorio local, esto lo hacemos tecleando el siguiente comando.
+
+# Crear enlace con el repositorio remoto
+git remote add origin git@github.com:usuario/proyecto.git
+
+Esto creará el puente necesario para poder mandar todo lo que tenemos en nuestro
+repositorio local hacia GitHub, para hacerlo debemos usar el siguiente comando:
+
+git push -u origin master
+
+Opcionalmente podemos crear una rama o branch, esto es una copia fiel del
+repositorio en la cual podemos hacer cambios al código sin afectar nuestra rama
+base, para poder crearla debemos ejecutar el siguiente comando:
+
+git checkout -b "nombre_del_branch"
+
+Al crear la rama debemos también hacer un push de esta rama hacia nuestro
+repositorio remoto para poder mantener este branch asegurado, para hacerlo
+debemos hacerlo igual que lo hicimos anteriormente, con la única diferencia de
+que en lugar de utilizar nuestro branch master (que es nuestro branch
+principal) vamos a indicar el branch que acabamos de crear:
+
+git push -u origin nombre_del_branch
+
+Puedes aprender mucho más sobre Git en el Curso de Git y GitHub aquí en
+Styde.net.
