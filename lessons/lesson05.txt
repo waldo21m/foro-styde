@@ -1,0 +1,70 @@
+Integración continua con Codeship y GitHub en un proyecto de Laravel 5.3
+
+En el siguiente video tutorial vamos a integrar Codeship a nuestro proyecto, lo
+cual nos permitirá desarrollar con la práctica de desarrollo de software
+conocida como Continuous Integration (CI) o Integración Continua.
+
+Con esta práctica los integrantes de un equipo integran su trabajo frecuentemente,
+usualmente varias veces al día, lo que lleva a una reducción de conflictos y
+problemas de integración que ocurren cuando trabajamos en equipo, además también
+permite detectar errores de forma temprana y en resumen permite que los
+desarrolladores trabajen de forma más precisa y creen proyectos en menos tiempo.
+
+Para trabajar con Continuous Integration, necesitamos una herramienta o servicio
+que nos permita construir el proyecto y ejecutar las pruebas de forma automática
+cada vez que un desarrollador realice una integración (por ejemplo un commit) a
+dicho proyecto.
+
+Por supuesto tenemos varias opciones para contratar este servicio, una de ellas
+es Travis CI que ya conocimos en el curso de desarrollo de componentes para PHP
+y el día de hoy vamos a aprender sobre Codeship que tiene un plan gratuito para
+proyectos privados y nos permite trabajar tanto con GitHub como con BitBucket.
+
+Notas:
+
+Comandos para construir el proyecto en Codeship
+
+phpenv local 7.0
+mysql -e 'create database foro_tests;'
+composer install --prefer-dist --no-interaction
+cp .env.codeship .env
+php artisan migrate --force
+
+Comando para ejecutar las pruebas
+
+vendor/bin/phpunit
+
+Nota: Por supuesto recuerda usar la versión de PHP que esté usando en el
+servidor de tu proyecto.
+
+Configuración en tu proyecto
+Crea un nuevo archivo de entornos .env.codeship (puedes copiar y pegar el archivo
+.env o .env.example) y asegúrate de colocar DB_CONNECTION como “mysql_tests” y en
+DB_DATABASE coloca foro_tests. Ten cuidado de NO subir llaves secretas o claves
+al repositorio de Git.
+
+El nombre de usuario y la contraseña de la base de datos de Codeship están en las
+variables de entorno MYSQL_USER y MYSQL_PASSWORD por lo cuál necesitamos cambiar
+la configuración de la conexión mysql_tests para que Codeship funcione
+adecuadamente:
+
+'mysql_tests' => [
+    'driver' => 'mysql',
+    'host' => env('DB_HOST', 'localhost'),
+    'port' => env('DB_PORT', '3306'),
+    'database' => env('DB_DATABASE_TESTS', 'foro_tests'),
+    'username' => env('MYSQL_USER', env('DB_USERNAME', 'forge')),
+    'password' => env('MYSQL_PASSWORD', env('DB_PASSWORD', '')),
+    'charset' => 'utf8',
+    'collation' => 'utf8_unicode_ci',
+    'prefix' => '',
+    'strict' => true,
+    'engine' => null,
+],
+
+Cachear las dependencias de Composer
+Para que el proceso de Codeship termine mucho más rápido, es una muy buena idea
+cachear las dependencias de Composer, para ello agrega la variable de entorno
+COMPOSER_HOME con el valor ${HOME}/cache/composer en la opción Environment de la
+configuración de tu proyecto en Codeship. Además asegúrate que el comando para
+instalar Composer tenga la opción --prefer-dist.
