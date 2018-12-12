@@ -1,0 +1,70 @@
+Recibe notificaciones de eventos de Github y Codeship en un canal de Slack
+
+Cuando trabajamos en un proyecto de desarrollo de una aplicación podemos recibir
+de una manera centralizada todas las notificaciones emitidas por el repositorio
+de Git (GitHub o Bitbucket) y/o por el servicio de integración continua (como
+Codeship o Travis CI) y esto por supuesto va a permitir que tanto tú como el
+resto del equipo esté al tanto del estado del proyecto, lo cual trae muchísimas
+ventajas: podrás detectar problemas de integración a tiempo, evitarás subir
+versiones rotas a producción, podrás ver el avance y progreso del proyecto de
+forma continua y mucho más.
+
+En la lección de hoy veremos cómo recibir notificaciones del repositorio de
+Github y de Codeship (integración continua) en el sistema de mensajería Slack.
+(En caso de que no estés usando Slack estos pasos son similares para otros
+sistemas como Campfire o Hipchat).
+
+Notas:
+
+Para realizar estos pasos debes tener una cuenta en Slack en la que puedas
+integrar las notificaciones. (https://slack.com/create#email)
+
+Integrando Github en Slack puedes recibir notificaciones de eventos relacionados
+con commits, issues y pull requests. Para ello debes configurar tanto tu equipo
+de Slack como tu cuenta de Github de la siguiente manera:
+
+    - Buscar en el directorio de App de Slack a GitHub. Recuerda estar logueado
+      en tu cuenta de Slack.
+    - Si es la primera vez que integras GitHub en el equipo haz clic en el botón
+      “Install” y si ya se ha hecho antes debes hacer clic en el botón
+      “Add configuration”.
+    - Selecciona un canal donde las notificaciones de GitHub serán publicadas y
+      hacer clic en el botón “Add GitHub Integration”.
+    - Debes iniciar sesión en GitHub y hacer clic en “Authenticate your GitHub
+      account”.
+    - Tienes que escoger el repositorio del que quieres ser notificado, así
+      como los eventos de GitHub que desees que se publiquen el canal de Slack.
+
+Nota: En caso que tu repositorio se encuentre en una organización de GitHub y
+no en tu usuario, debes darle permisos a Slack para que pueda acceder a él, es
+decir, en GitHub Settings de tu cuenta, has click en la opción “Authorized
+applications” y escoge Slack como aplicación. En la sección “Organization
+access”, has click en “Grant Access” para otorgar el permiso.
+
+    - Tienes la opción de poder personalizar el nombre de los posts de esta
+      integración, así como el icono.
+    - Al final debes hacer clic en el botón “Save Integration”.
+
+Para hacer una prueba que permita comprobar que todo está funcionando debes
+crear un nuevo commit en tu repositorio, subirlo a GitHub y luego de un
+segundo o dos debes ver una nueva notificación en tu canal de Slack.
+
+Nota: Para aprender cómo trabajar con repositorios con Git y GitHub te
+recomendamos nuestro Curso de Git y GitHub.
+
+Integrando Codeship en Slack recibes notificaciones en un canal cuando se inicia
+un nuevo build y el resultado de éste. Para configurarlo debes:
+
+    - Buscar en el directorio de aplicaciones a Codeship.
+    - Presiona en el botón “Install”.
+    - Selecciona el canal del equipo de Slack donde quieres recibir las
+      notificaciones y has clic en el botón “Add Codeship Integration”.
+    - Slack te mostrará una serie de pasos que debes realizar en tu cuenta de
+      Codeship para conectarlos, el primero es que ubiques tu proyecto en tu
+      cuenta.
+    - En la opción “Notifications” de “Project settings” debes buscar la
+      opción para Slack, activarlo con la opción “Enable” y por último colocar
+      la URL (webhook) que te proporciona Slack.
+
+Al igual que GitHub podemos hacer una prueba creando un nuevo commit en nuestro
+repositorio y subiéndolo a GitHub para que se inicie el build del proyecto.
