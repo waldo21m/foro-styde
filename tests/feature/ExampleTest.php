@@ -1,10 +1,6 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
-
-class ExampleTest extends TestCase
+class ExampleTest extends FeatureTestCase
 {
     /**
      * El problema de este Trait es que si tenemos muchísimas migraciones, las
@@ -17,14 +13,15 @@ class ExampleTest extends TestCase
      * El detalle de este Trait es que debemos correr las migraciones UNA SOLA
      * VEZ de forma manual, ejecutando: php artisan migrate --database=mysql_tests
      */
-    use DatabaseTransactions;
+    //use DatabaseTransactions;
+    //Ya no lo usaremos desde acá porque de eso se encarga la clase FeatureTestCase
 
     /**
      * A basic functional test example.
      *
      * @return void
      */
-    public function testBasicExample()
+    function test_basic_example()
     {
         //$this->assertTrue(false);
 

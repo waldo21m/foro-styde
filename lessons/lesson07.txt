@@ -1,0 +1,30 @@
+Personalizar el directorio tests de una aplicación de Laravel 5.3
+
+A medida que avanzamos en el proyecto nos damos cuenta que hay partes del código
+en las pruebas que frecuentemente debemos agregar y además que es buena idea
+trabajar organizadamente con todas las clases que creemos en el directorio tests.
+En la lección de hoy prepararemos estos detalles y con esto finalizaremos la
+configuración inicial de la aplicación.
+
+Notas:
+
+Es común usar el trait Illuminate\Foundation\Testing\DatabaseTransactions cuando
+estamos trabajando con una prueba de un feature o recurso pues tenemos que
+evaluar la interacción con la base de datos.
+
+Como las clases que se encuentran en el directorio tests no tienen namespace
+debes agregar manualmente la clase FeatureTestCase al archivo composer.json en
+la sección autoload-dev para que se cargue únicamente cuando se está bajo el
+entorno de desarrollo. Luego de esto debes ejecutar composer dump-autoload para
+que el archivo composer.lock se actualice y la clase esté disponible.
+
+Nota: Puedes repasar sobre la carga de clases con Composer en la lección:
+Autocarga de clases con Composer y PSR-4
+
+El archivo .gitkeep lo usamos para subir una “carpeta vacía” al repositorio
+puesto que Git solo soporta la gestión de archivos, es decir, si incluimos una
+carpeta en el directorio local del repositorio Git la reconocerá solamente
+cuando contenga un archivo o más.
+
+Aprendimos sobre visibilidad de métodos en PHP en la lección Herencia y
+abstracción con PHP
