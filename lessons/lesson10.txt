@@ -1,0 +1,37 @@
+Feat: Validación de datos de un formulario en Laravel 5.3 con TDD
+
+Otro de los detalles a tomar en cuenta cuando un usuario crea un post o pregunta
+en el foro es que debe llenar los campos necesarios. En esta lección aprenderás
+a desarrollar el código para validar un formulario usando TDD, es decir,
+desarrollaremos la funcionalidad, escribiendo una prueba automatizada para que
+verifique que siempre que un usuario cree un post lo haga de la manera correcta.
+
+Notas:
+
+Como hemos venido trabajando con TDD el primer paso es definir la prueba que
+evalúe la validación creando las tres partes: Having, When y Then.
+
+En esta lección se usó el método seeInElement para comprobar que en los
+elementos de HTML que tienen el selector de CSS tanto para title como
+para content del formulario donde se muestren el mensaje de error
+correspondiente:
+
+this->seeInElement('#field_title.has-error .help-block', 'El campo título es obligatorio');
+this->seeInElement('#field_content.has-error .help-block', 'El campo contenido es obligatorio');
+
+Para ejecutar solo la prueba de esta lección usa la opción –filter y el
+nombre del método a evaluar:
+
+vendor/bin/phpunit --filter test_create_post_form_validation
+
+Nota: Puedes aprender a crear el alias t siguiendo el tutorial Alias de comandos
+para la consola Windows/Linux/Mac.
+
+Para esta lección debes tener el paquete de Styde\Html actualizado a su versión
+más reciente. Para ello ejecuta composer update
+
+Acerca de la validación en Laravel puedes conocer más con la lección: Validación
+de datos con Laravel.
+
+En esta lección incluimos las traducciones a español de las validaciones de
+Laravel: Instalación y configuración de un nuevo proyecto con Laravel 5.3
