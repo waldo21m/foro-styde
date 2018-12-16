@@ -1,0 +1,42 @@
+Verificar restricción de acceso y redirección al login con TDD en Laravel 5.3
+
+En ocasiones cuando escribimos pruebas automatizadas, nos confiamos totalmente que
+la aplicación está funcionando correctamente cuando la prueba pasa y esto no es
+del todo cierto.  Se tiene que analizar todos los posibles escenarios donde la
+aplicación pueda fallar e idealmente respaldarlos con una prueba. En la lección
+de hoy estudiaremos los detalles que nos faltaron por cubrir en la prueba de la
+lección anterior: la redirección en caso de que el usuario no esté autenticado.
+
+Notas:
+
+Un middleware en Laravel es un mecanismo que permite filtrar las peticiones HTTP
+entrantes de una aplicación. Con ello podemos restringir el acceso de usuarios
+no autorizados a partes de la aplicación. En Styde hemos dedicado tutoriales
+y lecciones para que aprendas a trabajar con ellos:
+
+    * Cómo crear y usar los Middleware en Laravel.
+      https://styde.net/como-crear-y-usar-los-middleware-en-laravel-5-1/
+    * Tipos de Middleware en Laravel.
+      https://styde.net/tipos-de-middleware-en-laravel/
+    * Cómo funcionan los Grupos de Middleware en Laravel 5.2.
+    * Protección de un panel de administración con el middleware Authorize.
+    * Middleware en Laravel 5.1 parte 2: Creación.
+    * Middleware en Laravel 5.1 parte 3: Roles de usuario y parámetros.
+    * Entre otras.
+
+El archivo /app/Http/Kernel.php es donde se encuentran registrados todos los
+Middleware de tu aplicación, además en este mismo archivo, se indica cuándo y
+cómo se van a ejecutar.
+
+Por otro lado, la forma de distribuir las rutas de la aplicación se propuso en
+el tutorial Cómo organizar las rutas de tus proyectos de Laravel
+(https://styde.net/como-organizar-las-rutas-de-tus-proyectos-de-laravel/)
+haciendo uso de Grupos de rutas en Laravel 5.*
+(https://styde.net/grupos-de-rutas-en-laravel-5/) y ahora, tomando en cuenta
+los Cambios en el RouteServiceProvider en Laravel 5.2.27 y los Cambios en la
+estructura de carpetas y rutas en Laravel 5.3 se obtiene como resultado la
+estructura de rutas planteado en el video.
+
+Para escribir la prueba que verifique si el usuario tiene acceso a una ruta
+usamos el método seePageIs que nos evalúa si el usuario está en la página
+que redirecciona dicha ruta.
