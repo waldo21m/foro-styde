@@ -1,4 +1,4 @@
-Feat: Validación de datos de un formulario en Laravel 5.3 con TDD
+Validación de datos de un formulario en Laravel 5.3 con TDD
 
 Otro de los detalles a tomar en cuenta cuando un usuario crea un post o pregunta
 en el foro es que debe llenar los campos necesarios. En esta lección aprenderás

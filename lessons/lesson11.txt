@@ -1,0 +1,16 @@
+Creación de métodos de prueba personalizados para nuestra aplicación con Laravel y TDD
+
+A medida que desarrollamos nos encontramos con partes de código que necesitaremos
+reutilizar en distintas ocasiones y esta situación es una buena oportunidad para
+refactorizar el desarrollo que ya hemos realizado. Las pruebas automatizadas no
+son una excepción de esto, puesto que son código de PHP podemos crear nuestros
+propios métodos de prueba personalizadas y esto es lo que aprenderemos en esta
+lección.
+
+Notas:
+
+La lección del curso Laravel 5.1 que habla sobre creación de métodos para tus
+pruebas es: Desarrollo de métodos de prueba con el DomCrawler de Symfony
+
+Creamos el método en la clase FeatureTestCase porque este método se relaciona
+con las pruebas funcionales o de aplicación.
