@@ -1,0 +1,48 @@
+Verificar features ya desarrollados usando pruebas de regresión en Laravel
+
+A medida que desarrollamos y agregamos cambios a la aplicación puede ocurrir que
+a partir de un pequeño cambio surjan problemas o inconvenientes con partes del
+código que ya habían sido probadas. Para comprobar esto, podemos realizar pruebas
+de regresión, es decir, escribir pruebas que nos ayuden a detectar que los
+cambios realizados funcionen correctamente pero además, intentando exponer
+posibles errores en la aplicación. Se llaman pruebas de regresión porque al
+contrario de lo que nos indica TDD, en estos casos escribimos la prueba después
+de que la funcionalidad haya sido desarrollada. En la lección de hoy trabajaremos
+con este tipo de pruebas para descubrir un problema existente con la URL dinámica
+de un post.
+
+Notas:
+
+Una prueba de regresión es aquella que verifica que el software previamente
+desarrollado y probado siga cumpliendo su objetivo, incluso después que otros
+cambios se hayan realizado, esto con el fin de intentar encontrar errores que
+no haya sido descubiertos.
+
+El método getUrlAttribute es un accessor de Eloquent.
+https://styde.net/accessors-y-mutators-en-laravel-5-1-con-eloquent/
+
+Con los métodos assertResponseOk() y assertResponseStatus(200) de Laravel
+podemos comprobar si al visitar una URL se cargó sin ningún problema.
+
+Una redirección 301 es una redirección permanente, es decir, que se indica
+que una página con una URL antigua se mueve permanentemente hacia una nueva
+URL, así tanto los usuarios como los motores de búsqueda serán redirigidos
+automáticamente hacia la página con la nueva URL.
+
+Actividad:
+
+Realiza una prueba de integración para verificar que el método getUrlAttribute
+devuelve realmente el URL de un post cuando llamamos a $post->url y realiza un
+Pull Request (https://styde.net/pull-request-en-github/) a la rama lesson14 del
+repositorio de este curso, los pasos son:
+    1. Haz un fork del repositorio del curso en GitHub.
+       (https://styde.net/clone-y-fork-con-git-y-github/)
+    2. Clona el repositorio en tu computadora
+       git clone https://github.com/tu-usuario/foro.git
+    3. Entra en el directorio foro y cámbiate a la rama lesson14 ejecutando:
+       git checkout lesson14
+    4. Desarrolla la prueba de integración.
+    5. Comprueba que todo está funcionando, ejecutando todas las pruebas.
+    6. Haz commit de los cambios y sube a tu repositorio en Github.
+    7. Crea un Pull Request de tu repositorio contra la rama lesson14 del
+       repositorio del curso.
