@@ -1,0 +1,78 @@
+Diferencia entre pruebas unitarias, de integración y de aplicación (TDD)
+
+Todas las pruebas que hemos desarrollado hasta ahora han sido pruebas de aplicación
+o funcionales, las cuales son las que simulan el proceso de interacción del
+usuario con la aplicación; pero no son el único tipo de prueba que podemos aplicar
+en nuestro proyecto cuando trabajamos con el desarrollo guiado por pruebas o
+TDD. En la lección de hoy vamos crear con la funcionalidad para que un post
+tenga un slug y veremos los diferentes tipos de pruebas que podemos escribir
+antes, durante o después del desarrollo del feature y cuáles son las ventajas
+y desventajas de cada una.
+
+Nota:
+
+Una prueba unitaria es aquella en la que se evalúa si una unidad de software
+(como puede ser una clase o un método de una clase) funciona correctamente de
+manera aislada. Suele usarse para comprobar si al invocar un método de una
+clase se obtienen realmente los resultados que esperamos.
+
+Como se explicó en la lección Personalizar el directorio tests de una
+aplicación de Laravel 5.3 es recomendable tener cada tipo de prueba en un
+directorio dentro de tests, entonces para crear la prueba unitaria ejecutamos:
+
+php artisan make:test unit/PostModelTest
+
+Nota: Le colocamos el prefijo unit/ para que Laravel ubique la clase dentro
+del directorio unit.
+
+En esta prueba unitaria se hace uso de Mutator de Eloquent para que al guardar
+un título también se ejecute otra acción, en este caso, se genere un slug para
+el post y se guarde como el atributo slug del modelo.
+
+Nota: Puedes conocer más de detalles de está propiedad de Eloquent con el
+tutorial Accessors y Mutators en Laravel con Eloquent.
+https://styde.net/accessors-y-mutators-en-laravel-5-1-con-eloquent/
+
+El método assertSame($expected, $actual)
+https://phpunit.de/manual/6.5/en/appendixes.assertions.html#appendixes.assertions.assertSame
+es una aserción de PHPUnit
+https://phpunit.de/manual/6.5/en/appendixes.assertions.html
+que devuelve un mensaje si las 2 variables pasadas: la esperada $expected y la
+real $actual no son del mismo tipo y valor.
+
+Estas pruebas tardan menos tiempo en ejecutarse pues no suelen requerir la
+interacción de otros componentes de la aplicación (como por ejemplo la base
+de datos).
+
+La prueba de integración es aquella donde verificamos la interacción entre
+distintas unidades de software y su funcionamiento en conjunto. Son las pruebas
+que se realizan para comprobar si realmente se está guardando correctamente un
+objeto en la base de datos, si se ha enviado una notificación al actualizar un
+objeto, etc., es decir, esta prueba se enfoca en verificar la correcta interacción
+de una clase con las demás clases o componentes de la aplicación.
+
+Para crear la prueba de integración en el directorio integration ejecutamos:
+
+php artisan make:test integration/PostIntegrationTest
+
+El método fresh
+(https://laravel.com/api/5.3/Illuminate/Database/Eloquent/Model.html#method_fresh)
+de la clase Model de Laravel te devuelve una nueva instancia del modelo desde la
+base de datos.
+
+Para volver a ejecutar las migraciones en la base de datos de prueba:
+
+php artisan migrate:refresh --database=mysql_tests
+
+Prueba funcional o de aplicación: es un tipo de prueba de “caja negra” en la que
+se valida si una funcionalidad realiza lo que debe hacer y lo que no, según lo
+especificado por el usuario. Se llama prueba de caja negra, pues a este nivel no
+interesa cómo está implementada la funcionalidad, sino que si se introduce datos
+a la aplicación como lo haría un usuario se obtienen los resultados esperados.
+
+De las tres pruebas, la funcional es la más lenta puesto que necesita cargar
+muchas clases o componentes: controladores, vistas, base de datos, etc. pero
+es la que permite tener mayor seguridad que se está cumpliendo con los
+requisitos. Por lo tanto si sólo quieres escribir una prueba: escribe una
+prueba funcionalidad. Aunque para tareas más complejas puedes comenzar diseñando
+clases y métodos con el apoyo de las pruebas unitarias y de integración.
