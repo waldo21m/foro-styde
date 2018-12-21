@@ -1,0 +1,61 @@
+Mostrar el detalle de un registro con TDD
+
+En esta lección trabajaremos en la funcionalidad que le permitirá a un usuario
+pueda ver los detalles de un post, donde trabajamos con model factories y las
+relaciones hasMany y belongsTo de Eloquent. Además, conocerás la importancia
+del orden de las rutas de tu proyecto.
+
+Notas:
+
+Para crear el archivo de la prueba ejecuta:
+
+php artisan make:test features/ShowPostTest
+
+El método defaultUser se creó en la lección Creación de registros con TDD
+(lessión 08).
+
+Para más detalles del método seeInElement puedes consultar la lección Métodos
+de pruebas within y seeInElement de InteractsWithPages en Laravel 5.2.
+
+Para ejecutar la prueba solo para el método que se está trabajando usa la opción
+--filter con el nombre del método:
+
+vendor/bin/phpunit --filter test_a_user_can_see_the_post_details
+
+En nuestro Curso de programación orientada a objetos con PHP tenemos una parte
+con seis lecciones dedicadas a los métodos mágicos.
+
+Usando el método create en un model factory se crean las instancias de un modelo
+y se persisten dichos objetos en la base de datos, en cambio, con make sólo se
+crean las instancias del modelo sin persistirlas en la base de datos. Con esta
+última forma podemos asignar un post a un usuario usando la relación hasMany en
+el modelo User lo que permitirá guardar el post y asignarlo a dicho usuario de
+manera automática.
+
+También se debe definir la relación inversa belongsTo en el modelo Post para que
+podamos obtener el usuario autor a partir de un post.
+
+Nota: Si necesitas conocer más sobre la relación hasMany y su relación inversa
+consulta las lecciones Eloquent, el ORM de Laravel y Eloquent Avanzado |
+Relación Uno a Muchos con hasMany()
+
+Implic Model Binding es explicado en la lección Asociar rutas a modelos de
+Eloquent con Implicit Route Binding.
+
+Para darle un nombre a una ruta puedes hacerlo de dos maneras:
+
+    * Encadenando a la definición de la ruta el método name con el nombre a
+      asignar:
+      Route::get('posts/{post}', 'PostController@show')->name('posts.show');
+    * Pasándolo como parámetro de esta manera:
+      Route::get('posts/{post}', [
+      'as' => 'posts.show',
+      'uses' => 'PostController@show'
+      ]);
+
+Las vistas compiladas se encuentran en el directorio storage/framework/views
+
+El orden de las rutas importa, porque puede si dos rutas tienen la misma
+estructura, Laravel usará la primera definición que encuentre aún cuando no
+sea la correcta. Para ello puedes reordenar las rutas y/o hacer uso de Rutas
+con filtros en Laravel (https://styde.net/rutas-con-filtros-en-laravel-5-1/).

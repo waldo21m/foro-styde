@@ -23,9 +23,6 @@ class CreatePostTest extends FeatureTestCase
             'pending' => true,
             'user_id' => $user->id,
         ]);
-
-        // Test a user is redirected to the posts details after creating it.
-        $this->see('Esta es una pregunta');
     }
 
     function test_creating_a_post_requires_authentication()
