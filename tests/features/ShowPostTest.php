@@ -1,6 +1,6 @@
 <?php
 
-class ShowPostTest extends TestCase
+class ShowPostTest extends FeatureTestCase
 {
     /**
      * A basic test example.
