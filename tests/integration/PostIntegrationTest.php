@@ -33,18 +33,10 @@ class PostIntegrationTest extends TestCase
     {
         $user = $this->defaultUser();
 
-        $post = factory(Post::class)->make([
-            'title' => 'Generar el atributo url'
-        ]);
+        $post = factory(Post::class)->make();
 
         $user->posts()->save($post);
 
-        $this->seeInDatabase('posts', [
-            'slug' => 'generar-el-atributo-url'
-        ]);
-
-        $this->assertSame('generar-el-atributo-url', $post->slug);
-
-        $this->assertSame(route('posts.show', [$post->id, 'generar-el-atributo-url']), $post->url);
+        $this->assertSame($post->url, route('posts.show', [$post->id, $post->slug]));
     }
 }
