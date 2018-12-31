@@ -1,0 +1,43 @@
+Paginar registros con TDD en Laravel 5.3
+
+En esta lección continuaremos trabajando con el listado básico de posts del foro,
+esta vez agregaremos la funcionalidad para que sean paginados, algo bastante
+sencillo en Laravel pero te explicaremos cómo hacerlo con desarrollo guiado por
+pruebas (TDD) y de esta manera estaremos seguros que este feature va a funcionar
+a lo largo de todo el desarrollo del proyecto.
+
+Notas:
+
+En Styde tenemos varias lecciones dedicadas a explicar la funcionalidad de
+paginación en Laravel como por ejemplo: Paginación y carga de registros con
+seeders y model factories en Laravel así como sus cambios y mejoras en Laravel
+5.3: Personalización del HTML de paginación con Blade. Sin embargo, esta
+lección se enfoca en escribir la prueba automatizada que nos permita verificar
+su correcto funcionamiento.
+
+Se trabaja con los Model Factories de Post para crear varios posts a la vez
+usando el método times al cual le pasamos la cantidad de registros o posts
+que queremos que se generen y usamos el método create para que se persistan
+en la base de datos.
+
+Nota: En la lección Uso de model factories para crear registros con relaciones
+en Laravel 5.3 se escribió la definición del model factory para Post. (lesson15)
+
+Por defecto, la paginación en Laravel es de 15 registros por página. Si quieres
+que sea otro valor simplemente lo pasas como argumento del método paginate y si
+no le pasamos ningún valor, Laravel tomará el valor que contiene el atributo
+$perPage del modelo, que si no has modificado será 15.
+
+Para agregar el paginador en la vista con los enlaces a cada una de las páginas,
+solo necesitas agregar luego del listado {{ $posts->render() }} o su equivalente
+{{ $posts->links() }}.
+
+Con el método pluck de Laravel puedes extraer del modelo solo la columna que te
+interesa y con el método toArray conviertes la colección de Eloquent en un array
+de PHP.
+
+En la clase Manipular fechas con el componente Carbon en Laravel 5
+(https://styde.net/componente-carbon-fechas-laravel-5/)
+hablamos sobre el tema de Carbon.
+
+Con el método del componente de Carbon subDays le restas días a una fecha.
