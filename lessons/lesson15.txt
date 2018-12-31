@@ -1,0 +1,26 @@
+Uso de model factories para crear registros con relaciones en Laravel 5.3
+
+En esta lección vamos a corregir y mejorar algunos detalles de las pruebas ya
+desarrolladas: creación de método de prueba personalizado para posts, mejoras
+en el uso de model factories con modelos relacionados, entre otros; los cuales
+nos permitirán simplificar un poco más las pruebas de nuestra aplicación.
+
+Notas:
+
+Como en la prueba ShowPostTest no estábamos extendiendo de FeatureTestCase sino
+de TestCase no se estaba ejecutando el trait DatabaseTransaction por tanto, la
+base de datos de prueba podría tener datos que alteren los resultados y es por
+ello que en casos como estos es mejor actualizar las migraciones para la base
+de datos de prueba, por ejemplo:
+
+php artisan migrate:refresh --database=mysql_tests
+
+Hasta la lección anterior, cuando trabajamos con modelos relacionados como User
+y Post, los creamos a cada uno por separado y usamos la relación hasMany de
+Eloquent para atarlos, pero también podemos asignar la relación directamente en
+la definición del model factory usando una función anónima.
+
+Tal y como se hizo en la lección Creación de métodos de prueba personalizados
+para nuestra aplicación con Laravel y TDD para el modelo User en esta oportunidad
+simplificamos la creación de posts en las pruebas con el método de prueba
+createPost.
