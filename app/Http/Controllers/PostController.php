@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    public function index()
+    {
+        $posts = Post::all();
+
+        return view('posts.index', compact('posts'));
+    }
+
     public function show(Post $post, $slug)
     {
         // Comentamos estas líneas ya que haremos uso de una nueva funcionalidad.
