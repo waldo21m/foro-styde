@@ -1,0 +1,84 @@
+Módulo de comentarios en Laravel 5.3 con TDD
+
+Hasta los momentos hemos desarrollado en la aplicación la creación de un post,
+su listado y paginación, sin embargo, éste queda en estado pendiente y no hay
+manera de que otros usuarios puedan responder el post. Por ello, en la lección
+de hoy vamos a permitir que otros usuarios escriban comentarios tratando de
+resolver el problema o duda del post. Por supuesto desarrollaremos esta
+funcionalidad usando TDD.
+
+Notas:
+
+Según TDD lo primero que debemos realizar es la prueba y para ello ejecutamos:
+
+php artisan make:test features/WriteCommentTest
+
+Recuerda que hemos mejorado nuestras pruebas personalizando el directorio tests
+de la aplicación, donde creamos la clase FeatureTestCase, además, en la lección
+Creación de registros con TDD creamos el helper defaultUser y en la lección Uso
+de model factories para crear registros con relaciones en Laravel 5.3 se creó
+el helper createPost.
+(lesson07, lesson08 y lesson15)
+
+Para ejecutar solo la prueba que estamos desarrollando:
+
+vendor/bin/phpunit --filter test_a_user_can_write_a_comment
+
+Para conocer cómo trabajar con formularios y campos con el paquete Styde\Html
+puedes revisar nuestro tutorial: Creando formularios con el paquete Styde/Html
+(https://styde.net/creando-formularios-con-el-paquete-styde-html/)
+
+La organización de las rutas del proyecto en distintos archivos se realizó en
+la lección: Verificar restricción de acceso y redirección al login con TDD en
+Laravel 5.3. Como necesitamos que el usuario esté conectado para que pueda
+comentar un post, definimos la ruta en el archivo routes/auth.php
+(lesson09)
+
+Para crear el nuevo controlador ejecuta:
+
+php artisan make:controller CommentController
+
+Para crear la migración que permitirá crear la tabla de comments:
+
+php artisan make:migration create_comments_table --create=comments
+
+En una migración escribir $table->integer('user_id')->unsigned(); es equivalente
+a escribir $table->unsignedInteger('user_id'); en los dos casos estamos creando
+un campo entero y sin signo para usarlo como llave foránea.
+
+Para crear la tabla en la base de datos de prueba a partir de la migración debes
+ejecutar:
+
+php artisan migrate --database=mysql_tests
+
+El modelo Comment lo creamos ejecutando en consola:
+
+php artisan make:model Comment
+
+Importante: No olvides agregar los campos que podrán ser asignados masivamente
+en el atributo $fillable del modelo.
+
+Para que el modelo Comment y el modelo Post puedan trabajar en conjunto se debe
+definir las relaciones de Eloquent en cada modelo: un post tiene muchos
+comentarios y la relación inversa un comentario pertenece a un post. Si
+necesitas profundizar sobre relaciones puedes consultar nuestro
+Curso avanzado de Eloquent ORM.
+
+A partir de PHP 7 las clases importadas que estén en un mismo namespace pueden
+ser declaradas en grupo de la siguiente manera:
+
+use App\{Post, User};
+
+Sin embargo, si no estás usando PHP 7 entonces debes declarar cada namespace en
+una linea por separado:
+
+use App\Post;
+use App\User;
+
+El getter o accesor de Eloquent $post->url fue creado en la lección: Verificar
+features ya desarrollados usando pruebas de regresión en Laravel (lesson14)
+
+Ejercicios
+
+Desarrolla la validación del comentario de un post usando TDD y compártelo en
+los comentarios o haciendo un Pull Request al repositorio del curso.
