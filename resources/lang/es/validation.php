@@ -155,6 +155,7 @@ return [
         'password'              => 'contraseña',
         'password_confirmation' => 'confirmación de la contraseña',
         'city'                  => 'ciudad',
+        'comment'               => 'comentario',
         'country'               => 'país',
         'address'               => 'dirección',
         'phone'                 => 'teléfono',
