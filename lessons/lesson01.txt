@@ -40,24 +40,29 @@ Vamos a practicar lo aprendiendo hasta ahora
 programación orientada a objetos?
 
     - Curso de Laravel 5.1
+      https://styde.net/curso-introductorio-laravel-5-1/
     - Curso de novedades en Laravel 5.2
+      https://styde.net/curso-de-novedades-en-laravel-5-2/
     - Curso de novedades en Laravel 5.3
+      https://styde.net/curso-de-novedades-en-laravel-5-3/
     - Curso de programación orientada a objetos con PHP
+      https://styde.net/curso-de-programacion-orientada-a-objetos-con-php/
     - Curso básico de Eloquent con Laravel 5.1 y Curso avanzado de Eloquent ORM
+      https://styde.net/curso-basico-de-eloquent-orm-con-laravel-5-1/
+      https://styde.net/curso-avanzado-de-eloquent-orm/
 
 ¿Ya viste los cursos de Front end y otras tecnologías?
 
     - Curso de Sass
+      https://styde.net/curso-de-sass/
     - Curso de Vue.js
+      https://styde.net/curso-de-vue-js/
     - Curso de Git y GitHub
+      https://styde.net/curso-de-git/
     - Curso de Gulp
+      https://styde.net/curso-gulp-y-herramientas-de-automatizacion/
 
 En este curso vamos a poner en práctica todos esos conocimientos mientras
 desarrollamos una aplicación real, y si no has completado los otros cursos,
 no te preocupes, nos aseguraremos de enlazar el material relacionado en cada
 lección para que puedas ponerte al día.
-
-Mis apuntes:
-
-No coloco ningún link porque este es un curso pago... Y todos los demás links
-son cursos pagos. Cuando el año expire no tendría acceso a no ser que pague.

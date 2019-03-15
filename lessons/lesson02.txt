@@ -59,6 +59,7 @@ php artisan make:auth
 
 Nota: Para más detalles sobre este sistema consulta: Registro, login y
 recuperación de contraseña con make:auth en Laravel 5.3
+https://styde.net/registro-login-y-recuperacion-de-contrasena-con-makeauth-en-laravel-5-3/
 
 Modifica el archivo .env para configurar la variable de entorno
 (https://styde.net/variables-de-entorno-en-laravel/) para URL de la
@@ -100,3 +101,21 @@ vendor/bin/phpunit
 
 Nota: En el video se usó un alias de este comando. Puedes crear los tuyos
 guiándote de este tutorial: Alias de comandos para la consola Windows/Linux/Mac
+https://styde.net/alias-de-comandos-para-la-consola-windowslinuxmac/
+
+Material relacionado
+	- Instalación de Composer y Laravel 5.*
+	  https://styde.net/instalacion-de-composer-y-laravel-5-1/
+	- Instalación y configuración de un proyecto existente en Laravel
+	  https://styde.net/instalacion-y-configuracion-de-un-proyecto-existente-en-laravel-5-1/
+
+Mis apuntes:
+
+Los paquetes de composer pueden no ser compatibles con esta versión de Laravel.
+Esto lo podemos solventar instalando dicho paquete de la siguiente forma:
+composer require vendor/package:version.
+Ejemplo:
+composer require graham-campbell/markdown:9.0.0
+
+La versión de styde/html que usaremos será la siguiente:
+composer require "styde/html=~1.2"

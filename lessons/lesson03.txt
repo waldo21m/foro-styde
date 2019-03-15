@@ -70,8 +70,10 @@ de /routes/api.php.
 Nota: Este grupo de rutas (https://styde.net/grupos-de-rutas-en-laravel-5/) se
 encuentra configurado en el archivo /app/Providers/RouteServiceProvider.php
 como lo vimos en la lección Cambios en el RouteServiceProvider en Laravel 5.2.27
+https://styde.net/cambios-en-el-routeserviceprovider-en-laravel-5-2-27/
 Además recuerda que a partir de Laravel 5.3 hubo cambios en la estructura de las
 carpetas y rutas de una aplicación.
+https://styde.net/cambios-en-la-estructura-de-carpetas-y-rutas-en-laravel-5-3/
 
 En este caso, la ruta /api/user requiere que el usuario esté conectado, es decir,
 que la ruta está siendo restringida con el middleware auth pasándole el parámetro
@@ -130,3 +132,11 @@ provee para el desarrollo de pruebas:
 Nota: Puedes conocer más en: Traits para el desarrollo de pruebas de integración
 en Laravel.
 https://styde.net/traits-para-el-desarrollo-de-pruebas-de-integracion-en-laravel/
+
+Material relacionado
+	- Desarrollo de clases y métodos con pruebas automatizadas.
+	  https://styde.net/desarrollo-de-clases-y-metodos-con-pruebas-automatizadas/
+	- Las pruebas automatizadas son perfectas para tus proyectos personales
+	  https://styde.net/uso-de-pruebas-unitarias-en-proyectos-personales/
+	- Configuración de bases de datos y entorno de desarrollo para Laravel
+	  https://styde.net/configuracion-de-bases-de-datos-y-entorno-de-desarrollo-para-laravel/
