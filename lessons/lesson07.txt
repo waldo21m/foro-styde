@@ -20,6 +20,7 @@ que el archivo composer.lock se actualice y la clase esté disponible.
 
 Nota: Puedes repasar sobre la carga de clases con Composer en la lección:
 Autocarga de clases con Composer y PSR-4
+https://styde.net/autocarga-de-clases-con-composer-y-psr-4/
 
 El archivo .gitkeep lo usamos para subir una “carpeta vacía” al repositorio
 puesto que Git solo soporta la gestión de archivos, es decir, si incluimos una
@@ -28,3 +29,38 @@ cuando contenga un archivo o más.
 
 Aprendimos sobre visibilidad de métodos en PHP en la lección Herencia y
 abstracción con PHP
+https://styde.net/herencia-y-abstraccion-con-php/
+
+Material relacionado:
+    - Configuración para el entorno de pruebas automatizadas (PHPUnit)
+    https://styde.net/configuracion-para-el-entorno-de-pruebas-automatizadas-phpunit/
+    - Desarrollo de clases y métodos con pruebas automatizadas
+    https://styde.net/desarrollo-de-clases-y-metodos-con-pruebas-automatizadas/
+    - Cómo escribir pruebas unitarias y de aplicación y por qué es importante
+    https://styde.net/como-escribir-pruebas-unitarias-y-de-aplicacion-tipos-diferencias/
+    - Curso de Git y GitHub
+    https://styde.net/curso-de-git/
+
+Mis apuntes:
+Podemos mejorar nuestra estructura de trabajo de la carpeta tests creando los
+siguientes subdirectorios:
+	- features.
+	- integration.
+	- unit (aún no se coloca en esta lección).
+
+Nuestro archivo ExampleTest.php lo moveremos a la carpeta features y crearemos
+una nueva clase llamada FeatureTestCase.php. Esta clase, tendrá el Trait que
+siempre estaremos utilizando llamado "DatabaseTransactions", por lo cual, el
+archivo ExampleTest.php debe extender ahora de FeatureTestCase.
+
+FeatureTestCase debemos agregarlo a nuestro autoload-dev de composer.json
+siguiendo las notas relacionadas.
+
+De esta manera, no tendremos que estar usando el Trait en cada una de nuestras
+pruebas. Otra cosa que haremos es eliminar la palabra reservada public de los
+métodos de ExampleTest (esto es opcional, sino se agrega, PHP interpretará que
+es un método público) y cambiaremos los métodos de camelCase a lowercase con
+underscore (es una cuestión de gustos simplemente).
+
+Recuerda que los nombres de las pruebas deben ser lo más descriptivos posible,
+no importa si el nombre del método es largo.
