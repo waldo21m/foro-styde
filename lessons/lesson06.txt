@@ -51,6 +51,7 @@ segundo o dos debes ver una nueva notificación en tu canal de Slack.
 
 Nota: Para aprender cómo trabajar con repositorios con Git y GitHub te
 recomendamos nuestro Curso de Git y GitHub.
+https://styde.net/curso-de-git/
 
 Integrando Codeship en Slack recibes notificaciones en un canal cuando se inicia
 un nuevo build y el resultado de éste. Para configurarlo debes:
@@ -68,3 +69,45 @@ un nuevo build y el resultado de éste. Para configurarlo debes:
 
 Al igual que GitHub podemos hacer una prueba creando un nuevo commit en nuestro
 repositorio y subiéndolo a GitHub para que se inicie el build del proyecto.
+
+Material relacionado:
+	- Integración continua con Codeship y GitHub en un proyecto de Laravel 5.3
+	https://styde.net/integracion-continua-con-codeship-y-github-en-un-proyecto-de-laravel-5-3/
+	- Envío de notificaciones a Slack en Laravel 5.3
+	https://styde.net/envio-de-notificaciones-por-slack-en-laravel-5-3/
+	- Como enviar mensajes desde Laravel a Slack
+	https://styde.net/como-enviar-mensajes-desde-laravel-a-slack/
+
+Mis apuntes:
+
+Instalación de GitHub
+
+Empezamos ingresando a la aplicación de Slack y le damos click en "Aplicaciones +".
+Busquemos GitHub (la nueva versión) y le damos click a instalar. Nos enviará a
+la página de Slack y le daremos a "Instalar".
+
+Le damos click a continuar, seleccionamos el canal y le damos click a instalar.
+Al terminar la instalación, se nos abrirá nuestro Slack y veremos debajos de
+las aplicaciones a GitHub. Podemos teclear ahí "/github help" para ver todas
+nuestras opciones disponibles.
+
+Para configurar nuestro repositorio, basta con agregar con el comando:
+"/github subscribe waldo21m/foro-styde". De esta manera, ya empezaremos a
+recibir todas nuestras notificaciones del repositorio.
+
+Instalación de Codeship
+
+Ingresamos a la aplicación de Slack y le damos click en "Aplicaciones +".
+Buscamos Codeship y le damos a instalar. Luego, al abrir el navegador, le damos
+click a instalar nuevamente, escogemos el canal donde se publicarán las
+alertas y le damos click a "Añadir integración con Codeship".
+
+Seguimos las instrucciones de configuración dadas por Codeship y guardamos los
+ajustes.
+
+Por último, realizamos un commit y lo subimos para probar ambas aplicaciones.
+
+Antes de realizar esto, editaremos el archivo readme.md para agregar la marca
+de agua que nos provee Codeship. Esto lo podemos ver en el apartado "General"
+de nuestro proyecto de codeship. Al pegar el "Markdown" en readme.md, podremos
+visualizar nuestra placa de Codeship.

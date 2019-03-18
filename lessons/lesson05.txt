@@ -68,3 +68,52 @@ cachear las dependencias de Composer, para ello agrega la variable de entorno
 COMPOSER_HOME con el valor ${HOME}/cache/composer en la opción Environment de la
 configuración de tu proyecto en Codeship. Además asegúrate que el comando para
 instalar Composer tenga la opción --prefer-dist.
+
+Enlaces relacionados:
+	- Sitios oficiales de servicios de Integración Continua: Codeship y Travis CI.
+	https://codeship.com/
+	https://travis-ci.org/
+	- Repositorios:
+	https://github.com/
+	https://bitbucket.org/product/
+
+Mis apuntes:
+Ingresamos al link https://app.codeship.com/projects, para ello, debemos tener
+una cuenta creada en Codeship y nuestro repositorio funcionando en GitLab,
+GitHub o cualquier otro. Luego, usamos los los comandos que indicaron en el curso
+"Comandos para construir el proyecto en Codeship". En mi caso fue el siguiente:
+
+phpenv local 7.2
+mysql -e 'create database foro_styde_tests;'
+composer install --prefer-source --no-interaction
+cp .env.codeship .env
+php artisan migrate --force
+
+Configuramos nuestro "Test Pipelines" colocando el nombre que nos guste (en este
+caso usé "Test Commands") y escribimos el comando para ejecutar nuestras pruebas
+unitarias, que en Laravel sería vendor/bin/phpunit.
+
+Para comprobar su funcionamiento, basta con realizar un commit y subirlo a
+nuestro repositorio. Antes de hacer eso, vamos al IDE para configurar nuestro
+archivo de .env.codeship que se encargará de la configuración del proyecto en
+codeship. Nota que es exactamente igual que .env pero no usamos DB_USERNAME y
+DB_PASSWORD.
+
+Pero, al no usar DB_USERNAME y DB_PASSWORD, el Build fallará de forma
+automática puesto que el nombre de usuario y la contraseña de la base de datos
+de Codeship están en las variables de entorno MYSQL_USER y MYSQL_PASSWORD.
+Para solucionar esto, hacemos lo indicado en las notas relacionadas de esta
+lección.
+
+Por último, debemos solucionar el problema de la caché de Composer... Si
+seguimos usando composer install --prefer-source --no-interaction, nuestro build
+tardaramos mucho más. Eso lo solucionamos ingresando en "Environment" y agregamos
+una variable de entorno con el key "COMPOSER_HOME" con el value de
+"${HOME}/cache/composer". Esto lo podemos conseguir en la documentación oficial
+de Codeship. Por último, usamos estos comandos ahora:
+
+phpenv local 7.2
+mysql -e 'create database foro_styde_tests;'
+composer install --prefer-dist --no-interaction
+cp .env.codeship .env
+php artisan migrate --force
