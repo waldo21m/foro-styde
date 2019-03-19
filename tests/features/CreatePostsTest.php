@@ -1,6 +1,6 @@
 <?php
 
-class CreatePostTest extends FeatureTestCase
+class CreatePostsTest extends FeatureTestCase
 {
     function test_a_user_create_a_post()
     {

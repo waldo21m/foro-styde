@@ -11,10 +11,11 @@ Notas:
 Como hemos venido trabajando con TDD el primer paso es definir la prueba que
 evalúe la validación creando las tres partes: Having, When y Then.
 
-En esta lección se usó el método seeInElement para comprobar que en los
-elementos de HTML que tienen el selector de CSS tanto para title como
-para content del formulario donde se muestren el mensaje de error
-correspondiente:
+En esta lección se usó el método seeInElement
+https://styde.net/metodos-de-pruebas-within-y-seeinelement-de-interactswithpages-en-laravel-5-2/
+para comprobar que en los elementos de HTML que tienen el selector de CSS tanto
+para title como para content del formulario donde se muestren el mensaje de
+error correspondiente:
 
 this->seeInElement('#field_title.has-error .help-block', 'El campo título es obligatorio');
 this->seeInElement('#field_content.has-error .help-block', 'El campo contenido es obligatorio');
@@ -26,12 +27,39 @@ vendor/bin/phpunit --filter test_create_post_form_validation
 
 Nota: Puedes aprender a crear el alias t siguiendo el tutorial Alias de comandos
 para la consola Windows/Linux/Mac.
+https://styde.net/alias-de-comandos-para-la-consola-windowslinuxmac/
 
 Para esta lección debes tener el paquete de Styde\Html actualizado a su versión
 más reciente. Para ello ejecuta composer update
 
 Acerca de la validación en Laravel puedes conocer más con la lección: Validación
 de datos con Laravel.
+https://styde.net/validacion-de-datos-del-usuario-con-laravel/
 
 En esta lección incluimos las traducciones a español de las validaciones de
 Laravel: Instalación y configuración de un nuevo proyecto con Laravel 5.3
+https://styde.net/instalacion-y-configuracion-de-un-nuevo-proyecto-con-laravel-5-3/
+
+Material relacionado:
+    - Validación de datos con Laravel.
+    - Instalación y configuración de un nuevo proyecto con Laravel 5.3.
+    - Creando formularios con el paquete Styde/Html.
+
+Mis apuntes:
+En esta lección, vamos a definir la prueba y el código para que cuando un usuario
+intente crear un post, al menos complete los campos que hagan falta.
+
+La plantilla del componente Styde/html la podemos visualizar en el directorio
+vendor/styde/html/themes/bootstrap/field en el archivo default.blade.php.
+
+Para el formulario, los ids basándonos en dicho componente, se llamarían
+field_title y field_content. En dicho archivo podemos ver como se imprimen los
+errores junto con sus etiquetas y clases necesarias.
+
+En caso de que marque algún error, debemos verificar nuestro archivo de
+traducciones, debido a que el método seeInElement() buscará el mensaje de
+error de dichos archivos de traducciones en la vista gracias a la validación
+que colocamos en el controlador.
+
+Debemos tener la versión más reciente de styde/html para el Laravel 5.3 o nos
+generará errores.

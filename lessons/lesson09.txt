@@ -2,7 +2,7 @@ Verificar restricción de acceso y redirección al login con TDD en Laravel 5.3
 
 En ocasiones cuando escribimos pruebas automatizadas, nos confiamos totalmente que
 la aplicación está funcionando correctamente cuando la prueba pasa y esto no es
-del todo cierto.  Se tiene que analizar todos los posibles escenarios donde la
+del todo cierto. Se tiene que analizar todos los posibles escenarios donde la
 aplicación pueda fallar e idealmente respaldarlos con una prueba. En la lección
 de hoy estudiaremos los detalles que nos faltaron por cubrir en la prueba de la
 lección anterior: la redirección en caso de que el usuario no esté autenticado.
@@ -19,10 +19,15 @@ y lecciones para que aprendas a trabajar con ellos:
     * Tipos de Middleware en Laravel.
       https://styde.net/tipos-de-middleware-en-laravel/
     * Cómo funcionan los Grupos de Middleware en Laravel 5.2.
+      https://styde.net/como-funcionan-los-grupos-de-middleware-en-laravel-5-2/
     * Protección de un panel de administración con el middleware Authorize.
+      https://styde.net/proteccion-de-un-panel-de-administracion-con-el-middleware-authorize/
     * Middleware en Laravel 5.1 parte 2: Creación.
+      https://styde.net/crea-tus-propios-middleware-en-laravel-5-1/
     * Middleware en Laravel 5.1 parte 3: Roles de usuario y parámetros.
+      https://styde.net/middleware-en-laravel-5-1-roles-de-usuario-y-parametros/
     * Entre otras.
+      https://styde.net/tag/middleware/
 
 El archivo /app/Http/Kernel.php es donde se encuentran registrados todos los
 Middleware de tu aplicación, además en este mismo archivo, se indica cuándo y
@@ -33,10 +38,76 @@ el tutorial Cómo organizar las rutas de tus proyectos de Laravel
 (https://styde.net/como-organizar-las-rutas-de-tus-proyectos-de-laravel/)
 haciendo uso de Grupos de rutas en Laravel 5.*
 (https://styde.net/grupos-de-rutas-en-laravel-5/) y ahora, tomando en cuenta
-los Cambios en el RouteServiceProvider en Laravel 5.2.27 y los Cambios en la
-estructura de carpetas y rutas en Laravel 5.3 se obtiene como resultado la
-estructura de rutas planteado en el video.
+los Cambios en el RouteServiceProvider en Laravel 5.2.27
+(https://styde.net/cambios-en-el-routeserviceprovider-en-laravel-5-2-27/) y
+los Cambios en la estructura de carpetas y rutas en Laravel 5.3
+(https://styde.net/cambios-en-la-estructura-de-carpetas-y-rutas-en-laravel-5-3/)
+se obtiene como resultado la estructura de rutas planteado en el video.
 
 Para escribir la prueba que verifique si el usuario tiene acceso a una ruta
 usamos el método seePageIs que nos evalúa si el usuario está en la página
 que redirecciona dicha ruta.
+
+Material relacionado:
+    - Cómo organizar las rutas de tus proyectos de Laravel
+      https://styde.net/como-organizar-las-rutas-de-tus-proyectos-de-laravel/
+    - Cambios en la estructura de carpetas y rutas en Laravel 5.3
+      https://styde.net/cambios-en-la-estructura-de-carpetas-y-rutas-en-laravel-5-3/
+
+Mis apuntes:
+Cuando desarrollamos sin pruebas automatizadas, vivimos en el costante temor de
+que algo pueda salir mal. Por lo tanto, estamos constantemente probando en el
+navegador todas las posibilidades. Incluso tratamos de dañar nuestro sistema a
+proposito (si somos programadores precavidos). Sin embargo, cuando desarrollamos
+con TDD, podemos irnos al otro extremo.
+
+Esto quiere decir, que cuando las pruebas están pasando no significa que toda
+la aplicación web esté desarrollada de la manera correcta. La moraleja es que,
+con o sin pruebas DEBEMOS ser precavidos porque debemos pensar que parte de
+nuestro feature o nuestro sistema, nosotros no estamos probando y podrían salir
+mal.
+
+En la lección anterior podemos detectar dos problemas. El primero es que
+asumimos que el usuario siempre está conectado, pero ¿Qué sucede si un usuario
+anónimo intenta acceder a la acción de CreatePostController? No tenemos un
+Middleware ni nada que lo prevenga. Para ello podemos simular este método para
+ver dicho error:
+
+	function test_a_guest_user_tries_to_create_a_post()
+    {
+        // Having
+        $title = 'Esta es una pregunta';
+        $content = 'Este es el contenido';
+
+        // When
+        $this->visit(route('posts.create'))
+            ->type($title, 'title')
+            ->type($content, 'content')
+            ->press('Publicar');
+
+        // Then
+        $this->seeInDatabase('posts', [
+            'title' => $title,
+            'content' => $content,
+            'pending' => true,
+            'user_id' => $user->id,
+            'slug' => 'esta-es-una-pregunta',
+        ]);
+    }
+
+Esto nos disparará un error indicando que el métodos posts() es nulo y este tipo
+de errores suelen ser más confusos que cualquier otro pero al menos nos indica el
+nombre de la clase y la línea donde puede estar ocurriendo el error.
+
+El deber ser es crear una prueba que sea lo siguiente, "crear un post requiere
+autorización". Si corremos la prueba fallará porque aún no hemos puesto el
+middleware.
+
+Para solucionar este problema, configuramos el RouteServiceProvider de Laravel
+colocando la configuración de esta lección, asignando los middleware para que
+se cumpla el test (usaremos el middleware auth y guest). Por último, moveremos
+nuestras rutas a nuestro nuevo fichero de rutas.
+
+Como la ruta "posts.create" tiene el middleware "auth" ahora la prueba si
+funcionará, solo le faltaría agregar nuestros mensajes de errores y todo lo
+demás pero esto lo veremos en lecciones siguientes.
