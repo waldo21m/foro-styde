@@ -16,6 +16,7 @@ El método defaultUser se creó en la lección Creación de registros con TDD
 
 Para más detalles del método seeInElement puedes consultar la lección Métodos
 de pruebas within y seeInElement de InteractsWithPages en Laravel 5.2.
+https://styde.net/metodos-de-pruebas-within-y-seeinelement-de-interactswithpages-en-laravel-5-2/
 
 Para ejecutar la prueba solo para el método que se está trabajando usa la opción
 --filter con el nombre del método:
@@ -24,6 +25,7 @@ vendor/bin/phpunit --filter test_a_user_can_see_the_post_details
 
 En nuestro Curso de programación orientada a objetos con PHP tenemos una parte
 con seis lecciones dedicadas a los métodos mágicos.
+https://styde.net/curso-de-programacion-orientada-a-objetos-con-php/
 
 Usando el método create en un model factory se crean las instancias de un modelo
 y se persisten dichos objetos en la base de datos, en cambio, con make sólo se
@@ -38,9 +40,12 @@ podamos obtener el usuario autor a partir de un post.
 Nota: Si necesitas conocer más sobre la relación hasMany y su relación inversa
 consulta las lecciones Eloquent, el ORM de Laravel y Eloquent Avanzado |
 Relación Uno a Muchos con hasMany()
+https://styde.net/eloquent-el-orm-de-laravel/
+https://styde.net/eloquent-avanzado-relacion-uno-a-muchos-con-hasmany/
 
 Implic Model Binding es explicado en la lección Asociar rutas a modelos de
 Eloquent con Implicit Route Binding.
+https://styde.net/asociar-rutas-a-modelos-de-eloquent-con-implicit-route-binding/
 
 Para darle un nombre a una ruta puedes hacerlo de dos maneras:
 
@@ -59,3 +64,59 @@ El orden de las rutas importa, porque puede si dos rutas tienen la misma
 estructura, Laravel usará la primera definición que encuentre aún cuando no
 sea la correcta. Para ello puedes reordenar las rutas y/o hacer uso de Rutas
 con filtros en Laravel (https://styde.net/rutas-con-filtros-en-laravel-5-1/).
+
+Material relacionado:
+    - Creación de registros con TDD
+    https://styde.net/creacion-de-registros-con-tdd/
+    - Validación de datos de un formulario en Laravel 5.3 con TDD
+    https://styde.net/validacion-de-datos-de-un-formulario-en-laravel-5-3-con-tdd/
+    - Asociar rutas a modelos de Eloquent con Implicit Route Binding
+    https://styde.net/asociar-rutas-a-modelos-de-eloquent-con-implicit-route-binding/
+    - Rutas con filtros en Laravel
+    https://styde.net/rutas-con-filtros-en-laravel-5-1/
+
+Mis apuntes:
+En las lecciones anteriores trabajamos en el feature básico de la creación de
+un post y nos dimos cuenta de que, cuando un usuario crea un post, lo más
+lógico es redirigirlo al detalle del post. Sin embargo, aún no contamos con
+esta pantalla y eso es lo que trabajaremos en esta lección.
+
+Empezamos primero creando la prueba como se indica en las notas relacionadas de
+esta lección.
+
+Notemos el como estamos creando una clase por acción (o método) o por feature
+porque, aunque se trate, por ejemplo, de la acción CreatePosts nos podemos fijar
+que en dicha acción desarrollamos varios métodos de prueba. Problablemente vamos
+a necesitar de hecho, agregar otro u otros, cuando por ejemplo agreguemos la
+categoría al post.
+
+Así que se recomienda mantener nuestras pruebas lo más separadas posibles, en
+este proyecto, las pruebas se están realizando por feature (o por acciones)
+porque así es más fácil buscarlas, editarlas, etc. Además que varias personas
+pueden trabajar en varios features diferentes y tener un poco menos de temor
+de ocasionar conflictos, por ejemplo, en el repositorio de Git.
+
+También recomiendan tener los controladores de la forma más seccionada posible
+PERO yo no soy (en lo personal) partidario de esta idea.
+
+En ShowPostTest crearemos una prueba llamada "test_a_user_can_see_the_post_details".
+Cuando nosotros estamos comenzando con TDD, estamos inclinados a intentar
+probar en un solo método varios features al mismo tiempo. El ejemplo más claro
+fue que en el método test_a_user_create_a_post de la clase CreatePostsTest.
+Ahí, quisimos también visualizar el post, pero mientras más features probemos
+en un método, va a ser más difícil hacer que la prueba pase y depurar y encontrar
+los posibles errores que están haciendo que la prueba falle.
+
+Es por eso que es mejor tener nuestras pruebas lo más separadas posible y
+probar un feature por método. Este principio, lo vamos a ir siguiendo a lo largo
+de este curso.
+
+Para la prueba, crearemos un usuario y un post donde se almacenarán en la BDD
+el titulo, el contenido y el nombre (having). Luego se visitará el post y
+veremos el titulo, el contenido y el usuario (When).
+
+Creo que hubiese sido mejor que el When fuese la visita y el Then serían los
+elementos de la página.
+
+Lo ideal es que el show fuese con un id junto con un sluggable pero se realizará
+en la lección siguiente.

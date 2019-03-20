@@ -11,6 +11,43 @@ Notas:
 
 La lección del curso Laravel 5.1 que habla sobre creación de métodos para tus
 pruebas es: Desarrollo de métodos de prueba con el DomCrawler de Symfony
+https://styde.net/desarrollo-de-metodos-de-prueba-con-el-domcrawler-de-symfony/
 
 Creamos el método en la clase FeatureTestCase porque este método se relaciona
 con las pruebas funcionales o de aplicación.
+
+Material relacionado:
+    - Curso de programación orientada a objetos con PHP
+    https://styde.net/curso-de-programacion-orientada-a-objetos-con-php/
+    - Desarrollo de métodos de prueba con el DomCrawler de Symfony
+    https://styde.net/desarrollo-de-metodos-de-prueba-con-el-domcrawler-de-symfony/
+
+Mis apuntes:
+En la lección anterior desarrollamos una prueba que consistía en que, si un
+usuario trata de crear un post sin la información necesaria, este sería
+dirigido nuevamente a la misma página mostrando los mensajes de errores.
+
+Sin embargo, cuando nosotros queremos escribir pruebas de validación, sobretodo
+para formularios que tengan más campos, podremos ver como ese código va a
+comenzar a duplicarse, además de que es un poco difícil de leer...
+
+Ahora, desarrollaremos un método llamado seeErrors que se encargará de
+simplificar nuestra labor a la hora de colocar todos nuestros campos que tengan
+validaciones.
+
+Todos nuestros métodos que usaremos en nuestras pruebas automatizadas lo
+definiremos en la clase FeatureTestCase ya que todas nuestras pruebas extenderán
+de ese archivo. Esta clase fue creada precisamente para agrupar estos métodos
+que son relacionados a pruebas de aplicación o pruebas funcionales (de ahí viene
+el nombre FEATURETestCase) y no a pruebas de integración o pruebas unitarias.
+
+La diferencia entre pruebas funcionales, integración y unitarias la veremos
+más adelante en el curso.
+
+Es importante saber que un campo puede contener más de un error. Por eso,
+decimos que por cada error hay un mensaje debido a que la variable $errors es un
+arreglo.
+
+Con esta refactorización, nuestra prueba de la lección pasada quedó mucho más
+limpia y vamos a tener un método disponible para futuras pruebas funcionales
+que vamos a estar desarrollando en este proyecto.
