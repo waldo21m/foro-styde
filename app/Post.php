@@ -12,6 +12,10 @@ class Post extends Model
         'content',
     ];
 
+    protected $casts = [
+        'pending' => 'boolean',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

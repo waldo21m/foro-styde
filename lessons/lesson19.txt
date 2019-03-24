@@ -1,0 +1,70 @@
+Desarrollo con pruebas de integración y regresión en Laravel 5.3 (TDD)
+
+En esta lección vamos a trabajar en el desarrollo de la funcionalidad para que
+un comentario sea marcado como respuesta a un post usando TDD pero esta vez
+haciendo una prueba de integración y además vamos a apoyarnos en las pruebas de
+regresión y en la refactorización para asegurarnos que un post sólo pueda tener
+una respuesta.
+
+Notas:
+
+En esta lección trabajaremos con una prueba de integración para crearla en el
+directorio integration ejecuta:
+
+php artisan make:test integration/MarkCommentAsAnswerTest
+
+Información: Conoce la diferencia entre una prueba de integración y una prueba
+de aplicación o funcional (lección #13)
+
+Nuestra prueba de integración extiende de la clase tests/TestCase.php y por lo
+tanto como trabajaremos con la base de datos debemos incluir el trait
+DatabaseTransactions.
+
+Información: Para mayor información de este trait consulta: Traits para el
+desarrollo de pruebas de integración en Laravel
+https://styde.net/traits-para-el-desarrollo-de-pruebas-de-integracion-en-laravel/
+
+El método fresh
+https://laravel.com/api/5.3/Illuminate/Database/Eloquent/Model.html#method_fresh
+de la clase Model de Laravel te devuelve una nueva instancia del modelo desde
+la base de datos.
+
+Nosotros podemos ejecutar un sólo método de prueba a la vez, por ejemplo:
+
+vendor/bin/phpunit --filter test_a_post_can_be_answered
+
+Necesitamos crear el model factory para los comentarios por tanto modificamos el
+archivo /database/factories/ModelFactory.php para agregarlo, donde asignaremos
+los modelos relacionados usando el tip explicado en la lección Uso de model
+factories para crear registros con relaciones en Laravel 5.3 (lección #15).
+
+Como estamos modificando las migraciones ya ejecutadas entonces necesitamos
+volver ejecutar todas las migraciones para que los cambios se realicen:
+
+php artisan migrate:refresh --database=mysql_tests
+
+Agregando un atributo a la propiedad $casts de un modelo es una manera de forzar
+que el atributo sea convertido a un tipo de datos específico, como por ejemplo,
+el atributo pending sea booleano:
+
+protected $casts = [
+    'pending' => 'boolean'
+];
+
+Usamos las pruebas de regresión (lección #14) para revelar un bug o issue (algo
+que no está funcionando correctamente), en este caso la hemos creado para
+confirmar que solo un comentario sea marcado como respuesta a un post.
+
+Te recomendamos que realices commits de los avances realizados al desarrollar
+una funcionalidad para luego refactorizar y en caso de no funcionar no pierdas
+tus cambios. ¿No tienes mucha experiencia en Git? no dejes de ver nuestro
+Curso de Git y GitHub
+https://styde.net/curso-de-git/
+
+Material relacionado
+    - Diferencia entre pruebas unitarias, de integración y de aplicación (TDD)
+    lección #13
+    - Verificar features ya desarrollados usando pruebas de regresión en Laravel
+    lección #14
+    - Uso de model factories para crear registros con relaciones en Laravel 5.3
+    lección #15
