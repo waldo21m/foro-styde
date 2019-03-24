@@ -68,3 +68,40 @@ Material relacionado
     lección #14
     - Uso de model factories para crear registros con relaciones en Laravel 5.3
     lección #15
+
+Mis apuntes:
+Vamos a partir en esta lección creando la prueba test_a_post_can_be_answered.
+Esta consiste en lo siguiente: tendremos un post que se le agregará un
+comentario. Este comentario será marcado como la respuesta correcta, por lo
+tanto, veremos en nuestra BDD que el comentario será la respuesta correcta
+como true y que el post ya no estará pendiente, es decir, será false.
+
+En el commit "Add markAsAnswer method to the comment model" tendremos un
+ejemplo funcional de nuestra prueba, sin embargo podemos refactorizarlo
+como se propone. Antes, agregabamos una columna answer a la tabla comments
+que se encargaba de marcar a un comentario como la respuesta correcta y
+desarrollamos una prueba de regresión que mostraba un problema debido a
+que varios comentarios podían estar marcados como verdaderos.
+
+Dicha prueba tiene como nombre test_a_post_can_only_have_one_answer.
+Esa prueba de regresión se solucionó agregando al inicio del método
+markAsAnswer la siguiente línea de código.
+	$this->post->comments()->where('answer', true)->update(['answer' => false]);
+Este actualiza todos los comentarios que están como verdaderos de dicho post y
+los cambia a un estado falso, solucionando dicho issue.
+
+Sin embargo, existe un modo más elegante. Debemos quitar la columna answer
+de la tabla comments y crearemos una columna llamada answer_id en la tabla de
+posts. Este campo se encargará únicamente de almacenar el id del comentario
+que sea la respuesta correcta.
+
+Por último, crearemos un atributo answer en el modelo de Comment que será una
+comparación entre el answer_id del post y el id del comentario. Si son iguales,
+este comentario será la respuesta correcta, haciendo que todas las pruebas
+funcionen de manera correcta.
+
+Notese que ahora al llamar el método markAsAnswer, siempre estaremos
+actualizando el answer_id con el comentario correcto.
+
+Además, creamos un ModelFactory para los comentarios y usamos el atributo
+protegido $casts.
