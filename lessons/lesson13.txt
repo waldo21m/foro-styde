@@ -17,8 +17,9 @@ manera aislada. Suele usarse para comprobar si al invocar un método de una
 clase se obtienen realmente los resultados que esperamos.
 
 Como se explicó en la lección Personalizar el directorio tests de una
-aplicación de Laravel 5.3 es recomendable tener cada tipo de prueba en un
-directorio dentro de tests, entonces para crear la prueba unitaria ejecutamos:
+aplicación de Laravel 5.3 (lección #7) es recomendable tener cada tipo de
+prueba en un directorio dentro de tests, entonces para crear la prueba
+unitaria ejecutamos:
 
 php artisan make:test unit/PostModelTest
 
@@ -76,3 +77,47 @@ es la que permite tener mayor seguridad que se está cumpliendo con los
 requisitos. Por lo tanto si sólo quieres escribir una prueba: escribe una
 prueba funcionalidad. Aunque para tareas más complejas puedes comenzar diseñando
 clases y métodos con el apoyo de las pruebas unitarias y de integración.
+
+Material relacionado:
+    - Tips para simplificar tus pruebas automatizadas con Laravel
+    https://styde.net/tips-para-simplificar-tus-pruebas-automatizadas-con-laravel/
+    - Cómo escribir pruebas unitarias y de aplicación y por qué es importante
+    https://styde.net/como-escribir-pruebas-unitarias-y-de-aplicacion-tipos-diferencias/
+    - Cómo funcionan las pruebas de integración en Laravel 5.1
+    https://styde.net/como-funcionan-las-pruebas-de-integracion-en-laravel-5-1/
+
+Mis apuntes:
+En la lección anterior creamos el feature para mostrar el detalle del post. Sin
+embargo, tenemos un problema porque la URL es poco descriptiva, por cual, nos
+encargaremos de crear un slug para solventar el inconveniente.
+
+Este cometido lo lograremos creando una prueba unitaria y de integración. La
+prueba unitaria la crearemos en una carpeta llamada unit con el nombre de
+PostModelTest y no lo llamamos PostTest porque, al usar --filter en la terminal,
+esta correrá todas las pruebas que contengan el mismo nombre relacionado.
+Ejemplo: Si lo hubiesemos llamado PostTest, las pruebas que correrían son:
+	- ShowPostTest
+	- PostTest
+Y esto no es lo que deseamos.
+
+En el modelo de Post crearemos un método Mutator que servirá para crear el
+atributo slug.
+
+Siendo muy purista en el código, la prueba unitaria que creamos no es
+realmente una prueba unitaria y esto se debe porque está usando un método
+y una clase para realizar una acción... En este caso, el método
+setTitleAttribute y la clase Str. Esto era en realidad una prueba de
+integración.
+
+Ahora, crearemos una prueba de integración llamada PostIntegrationTest.
+Como lo dice en las notas relacionadas, con esta prueba, interactuamos con la
+base de datos.
+
+Por último, agregamos nuestro slug en la prueba CreatePostsTest para que este
+acorde con lo que realizamos en esta lección.
+
+Si estamos construyendo una funcionalidad complicada, lo conveniente como
+aprendimos en esta lección, es crear pruebas unitarias para probar los
+métodos de manera individual (o la clase), crear las pruebas de integración y
+por último, la prueba funcional que es la más completa de todas puesto que
+veremos los controladores, vistas, bases de datos, etc.

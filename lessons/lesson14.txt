@@ -46,3 +46,42 @@ repositorio de este curso, los pasos son:
     6. Haz commit de los cambios y sube a tu repositorio en Github.
     7. Crea un Pull Request de tu repositorio contra la rama lesson14 del
        repositorio del curso.
+
+Material relacionado:
+    - Desarrollo de clases y métodos con pruebas automatizadas
+    https://styde.net/desarrollo-de-clases-y-metodos-con-pruebas-automatizadas/
+    - Cómo escribir pruebas unitarias y de aplicación y por qué es importante
+    https://styde.net/como-escribir-pruebas-unitarias-y-de-aplicacion-tipos-diferencias/
+
+Mis apuntes:
+En esta lección, nos encargaremos de hacer funcionar el slug de la ruta y que
+sea de la siguiente manera: posts/{post}-{slug}
+
+Para lograr este cometido, debemos editar la prueba
+test_a_user_can_see_the_post_details. Además, crearemos un método accesor url
+que devuelva la ruta del post para que sea mucho más claro.
+
+Por ahora, si lo dejamos así únicamente, el slug podría ser cualquier cadena de
+texto, cosa que no es correcta.
+
+Para comprobar esto, desarrollaremos una prueba de regresión o regression test.
+Estas pruebas las usamos únicamente para exponer un problema, bug o issue
+existente en el sistema.
+
+¿Qué problemas nos trae esto?
+Un usuario puede compartir en un foro o cualquier otro medio, la ruta del post
+de forma errada y que siga funcionando. Ejemplo:
+1-este-link-esta-malo
+E incluso así, si el id del post coincide se mostrará el post, cosa que no debe
+pasar ya que debe mostrarse es un error 404.
+
+Otra solución que es mucho mejor y más flexible es realizar un redirect con el
+código 301. Si un usuario cambia el título del post, en dichos foros, páginas
+o links compartidos aún estará público el link viejo. Es por eso, que si
+redirigimos al usuario al nuevo link, obtendrá la nueva url y se mostrará el
+post de forma correcta.
+
+Para comprobar la solución propuesta, crearemos un test_old_urls_are_redirected
+y modificaremos el controlador para lograr pasar la prueba.
+
+De esta forma se crean urls dinámicas.

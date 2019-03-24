@@ -1,9 +1,5 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
-
 class WriteCommentTest extends FeatureTestCase
 {
     function test_a_user_can_write_a_comment()
@@ -37,7 +33,7 @@ class WriteCommentTest extends FeatureTestCase
             ->press('Publicar comentario')
             ->seePageIs($post->url)
             ->seeErrors([
-                'comment' => 'El campo comentario es obligatorio'
+                'comment' => 'El campo comentario es obligatorio.'
             ]);
     }
 }

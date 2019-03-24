@@ -21,6 +21,14 @@ Eloquent para atarlos, pero también podemos asignar la relación directamente e
 la definición del model factory usando una función anónima.
 
 Tal y como se hizo en la lección Creación de métodos de prueba personalizados
-para nuestra aplicación con Laravel y TDD para el modelo User en esta oportunidad
-simplificamos la creación de posts en las pruebas con el método de prueba
-createPost.
+para nuestra aplicación con Laravel y TDD (lección #11) para el modelo User en
+esta oportunidad simplificamos la creación de posts en las pruebas con el método
+de prueba createPost.
+
+Material relacionado:
+    - Tips para simplificar tus pruebas automatizadas con Laravel
+    https://styde.net/tips-para-simplificar-tus-pruebas-automatizadas-con-laravel/
+    - Personalizar el directorio tests de una aplicación de Laravel 5.3
+    lección #07
+    - Creación de métodos de prueba personalizados para nuestra aplicación con Laravel y TDD
+    lección #11

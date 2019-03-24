@@ -71,7 +71,7 @@ class ShowPostTest extends FeatureTestCase
     //    //    ->see('New title');
     //
     //    /**
-    //     * Esto anterior o debería funcionar porque un usuario puede ingresar un
+    //     * Esto anterior no debería funcionar porque un usuario puede ingresar un
     //     * slug random y la página seguiría funcionando. Es por ello que debería
     //     * retornar entonces es un error 404
     //     */

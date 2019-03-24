@@ -14,25 +14,24 @@ Según TDD lo primero que debemos realizar es la prueba y para ello ejecutamos:
 php artisan make:test features/WriteCommentTest
 
 Recuerda que hemos mejorado nuestras pruebas personalizando el directorio tests
-de la aplicación, donde creamos la clase FeatureTestCase, además, en la lección
-Creación de registros con TDD creamos el helper defaultUser y en la lección Uso
-de model factories para crear registros con relaciones en Laravel 5.3 se creó
-el helper createPost.
-(lesson07, lesson08 y lesson15)
+de la aplicación (lección #07), donde creamos la clase FeatureTestCase, además,
+en la lección Creación de registros con TDD (lección #08) creamos el helper
+defaultUser y en la lección Uso de model factories para crear registros con
+relaciones en Laravel 5.3 (lección #15) se creó el helper createPost.
 
 Para ejecutar solo la prueba que estamos desarrollando:
 
 vendor/bin/phpunit --filter test_a_user_can_write_a_comment
 
 Para conocer cómo trabajar con formularios y campos con el paquete Styde\Html
-puedes revisar nuestro tutorial: Creando formularios con el paquete Styde/Html
+https://github.com/StydeNet/html puedes revisar nuestro tutorial: Creando
+formularios con el paquete Styde/Html
 (https://styde.net/creando-formularios-con-el-paquete-styde-html/)
 
 La organización de las rutas del proyecto en distintos archivos se realizó en
 la lección: Verificar restricción de acceso y redirección al login con TDD en
-Laravel 5.3. Como necesitamos que el usuario esté conectado para que pueda
-comentar un post, definimos la ruta en el archivo routes/auth.php
-(lesson09)
+Laravel 5.3 (lección #09). Como necesitamos que el usuario esté conectado para
+que pueda comentar un post, definimos la ruta en el archivo routes/auth.php
 
 Para crear el nuevo controlador ejecuta:
 
@@ -63,6 +62,7 @@ definir las relaciones de Eloquent en cada modelo: un post tiene muchos
 comentarios y la relación inversa un comentario pertenece a un post. Si
 necesitas profundizar sobre relaciones puedes consultar nuestro
 Curso avanzado de Eloquent ORM.
+https://styde.net/curso-avanzado-de-eloquent-orm/
 
 A partir de PHP 7 las clases importadas que estén en un mismo namespace pueden
 ser declaradas en grupo de la siguiente manera:
@@ -76,9 +76,49 @@ use App\Post;
 use App\User;
 
 El getter o accesor de Eloquent $post->url fue creado en la lección: Verificar
-features ya desarrollados usando pruebas de regresión en Laravel (lesson14)
+features ya desarrollados usando pruebas de regresión en Laravel (lección #14)
 
 Ejercicios
 
 Desarrolla la validación del comentario de un post usando TDD y compártelo en
 los comentarios o haciendo un Pull Request al repositorio del curso.
+
+Material relacionado
+    - Creación de registros con TDD
+    lección #08
+    - Listar de registros con TDD en Laravel 5.3
+    lección #16
+    - Mostrar el detalle de un registro con TDD
+    lección #12
+    - Asociar rutas a modelos de Eloquent con Implicit Route Binding
+    https://styde.net/asociar-rutas-a-modelos-de-eloquent-con-implicit-route-binding/
+
+Mis apuntes:
+Refactorización de código. Cuando empezamos a desarrollar el método store de
+CommentController lo realizamos inicialmente de esta manera:
+
+	$comment = new Comment([
+		'comment' => $message,
+		'post_id' => $post->id,
+	]);
+
+	$auth->user()->comments()->save($comment);
+
+	return redirect($post->url);
+
+Pero pudimos refactorizarlo a lo siguiente:
+
+	auth()->user()->comment($post, $request->get('comment'));
+
+    return redirect($post->url);
+
+Donde el método comment() es creado en el modelo User de la siguiente manera:
+
+    $comment = new Comment([
+        'comment' => $message,
+        'post_id' => $post->id,
+    ]);
+
+    $this->comments()->save($comment);
+
+Así nuestro código es más legible.

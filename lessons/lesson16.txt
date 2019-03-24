@@ -14,9 +14,10 @@ hacemos ejecutando:
 php artisan make:test features/PostListTest
 
 Recuerda extender de la clase FeatureTestCase que se explicó en la lección
-Personalizar el directorio tests de una aplicación de Laravel 5.3 (lesson07)
+Personalizar el directorio tests de una aplicación de Laravel 5.3
+(lección #07)
 
-Se utilizó el método de prueba createPost creado en la lección 15
+Se utilizó el método de prueba createPost creado en la lección #15
 Uso de model factories para crear registros con relaciones en Laravel 5.3
 
 Ejecuta la prueba con:
@@ -25,9 +26,13 @@ vendor/bin/phpunit --filter test_a_user_can_see_the_posts_list_and_go_to_the_det
 
 El accessor de Eloquent getUrlAttribute que nos sirve para generar $post->url
 fue desarrollado en la lección Verificar features ya desarrollados usando
-pruebas de regresión en Laravel (lesson14)
+pruebas de regresión en Laravel (lección #14)
 
 Actividad
 
 Desarrolla la paginación del listado de posts usando TDD y comprueba la solución en
 la lección siguiente.
+
+Mis apuntes:
+Seguir el desarrollo guiado por pruebas, este nos indica paso a paso lo que
+debemos realizar.

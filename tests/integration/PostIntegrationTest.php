@@ -23,9 +23,8 @@ class PostIntegrationTest extends TestCase
 
         $this->assertSame('como-instalar-laravel', $post->slug);
 
-        // Esto es el equivalente a traerse el registro de la base de datos de esta manera
+        // Lo siguiente, es el equivalente a traerse el registro de la base de datos de esta manera
         // $post = Post::first();
-
         $this->assertSame('como-instalar-laravel', $post->fresh()->slug);
     }
 
