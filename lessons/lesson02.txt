@@ -103,7 +103,8 @@ Nota: En el video se usó un alias de este comando. Puedes crear los tuyos
 guiándote de este tutorial: Alias de comandos para la consola Windows/Linux/Mac
 https://styde.net/alias-de-comandos-para-la-consola-windowslinuxmac/
 
-Material relacionado
+Material relacionado:
+
 	- Instalación de Composer y Laravel 5.*
 	  https://styde.net/instalacion-de-composer-y-laravel-5-1/
 	- Instalación y configuración de un proyecto existente en Laravel

@@ -79,6 +79,7 @@ prueba funcionalidad. Aunque para tareas más complejas puedes comenzar diseñan
 clases y métodos con el apoyo de las pruebas unitarias y de integración.
 
 Material relacionado:
+
     - Tips para simplificar tus pruebas automatizadas con Laravel
     https://styde.net/tips-para-simplificar-tus-pruebas-automatizadas-con-laravel/
     - Cómo escribir pruebas unitarias y de aplicación y por qué es importante
@@ -87,6 +88,7 @@ Material relacionado:
     https://styde.net/como-funcionan-las-pruebas-de-integracion-en-laravel-5-1/
 
 Mis apuntes:
+
 En la lección anterior creamos el feature para mostrar el detalle del post. Sin
 embargo, tenemos un problema porque la URL es poco descriptiva, por cual, nos
 encargaremos de crear un slug para solventar el inconveniente.

@@ -48,12 +48,14 @@ repositorio de este curso, los pasos son:
        repositorio del curso.
 
 Material relacionado:
+
     - Desarrollo de clases y métodos con pruebas automatizadas
     https://styde.net/desarrollo-de-clases-y-metodos-con-pruebas-automatizadas/
     - Cómo escribir pruebas unitarias y de aplicación y por qué es importante
     https://styde.net/como-escribir-pruebas-unitarias-y-de-aplicacion-tipos-diferencias/
 
 Mis apuntes:
+
 En esta lección, nos encargaremos de hacer funcionar el slug de la ruta y que
 sea de la siguiente manera: posts/{post}-{slug}
 

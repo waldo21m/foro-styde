@@ -34,5 +34,6 @@ Desarrolla la paginación del listado de posts usando TDD y comprueba la soluci�
 la lección siguiente.
 
 Mis apuntes:
+
 Seguir el desarrollo guiado por pruebas, este nos indica paso a paso lo que
 debemos realizar.

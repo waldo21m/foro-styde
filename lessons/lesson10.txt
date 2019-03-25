@@ -41,11 +41,13 @@ Laravel: Instalación y configuración de un nuevo proyecto con Laravel 5.3
 https://styde.net/instalacion-y-configuracion-de-un-nuevo-proyecto-con-laravel-5-3/
 
 Material relacionado:
+
     - Validación de datos con Laravel.
     - Instalación y configuración de un nuevo proyecto con Laravel 5.3.
     - Creando formularios con el paquete Styde/Html.
 
 Mis apuntes:
+
 En esta lección, vamos a definir la prueba y el código para que cuando un usuario
 intente crear un post, al menos complete los campos que hagan falta.
 

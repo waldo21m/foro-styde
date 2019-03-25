@@ -71,6 +71,7 @@ Al igual que GitHub podemos hacer una prueba creando un nuevo commit en nuestro
 repositorio y subiéndolo a GitHub para que se inicie el build del proyecto.
 
 Material relacionado:
+
 	- Integración continua con Codeship y GitHub en un proyecto de Laravel 5.3
 	https://styde.net/integracion-continua-con-codeship-y-github-en-un-proyecto-de-laravel-5-3/
 	- Envío de notificaciones a Slack en Laravel 5.3

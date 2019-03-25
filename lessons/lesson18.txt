@@ -84,6 +84,7 @@ Desarrolla la validación del comentario de un post usando TDD y compártelo en
 los comentarios o haciendo un Pull Request al repositorio del curso.
 
 Material relacionado
+
     - Creación de registros con TDD
     lección #08
     - Listar de registros con TDD en Laravel 5.3
@@ -94,6 +95,7 @@ Material relacionado
     https://styde.net/asociar-rutas-a-modelos-de-eloquent-con-implicit-route-binding/
 
 Mis apuntes:
+
 Refactorización de código. Cuando empezamos a desarrollar el método store de
 CommentController lo realizamos inicialmente de esta manera:
 

@@ -71,6 +71,7 @@ tutorial: Creando formularios con el paquete Styde/Html
 https://styde.net/creando-formularios-con-el-paquete-styde-html/
 
 Material relacionado:
+
     - Flujo de trabajo en el desarrollo con Laravel
     https://styde.net/flujo-de-trabajo-en-el-desarrollo-de-laravel/
     - Integración continua con Codeship y GitHub en un proyecto de Laravel 5.3 (Lección #5)
@@ -79,6 +80,7 @@ Material relacionado:
     https://styde.net/personalizar-el-directorio-tests-de-una-aplicacion-de-laravel-5-3/
 
 Mis apuntes:
+
 Como siempre estaremos creando un usuario para el método actingAs, podemos pasar
 el código hacia el testCase. Desde esa clase, crearemos un método que servirá
 para crear un usuario en caso de no tenerlo y retornaremos a dicho usuario hacia

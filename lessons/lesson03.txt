@@ -133,7 +133,8 @@ Nota: Puedes conocer más en: Traits para el desarrollo de pruebas de integraci�
 en Laravel.
 https://styde.net/traits-para-el-desarrollo-de-pruebas-de-integracion-en-laravel/
 
-Material relacionado
+Material relacionado:
+
 	- Desarrollo de clases y métodos con pruebas automatizadas.
 	  https://styde.net/desarrollo-de-clases-y-metodos-con-pruebas-automatizadas/
 	- Las pruebas automatizadas son perfectas para tus proyectos personales

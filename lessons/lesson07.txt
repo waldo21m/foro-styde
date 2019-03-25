@@ -32,6 +32,7 @@ abstracción con PHP
 https://styde.net/herencia-y-abstraccion-con-php/
 
 Material relacionado:
+
     - Configuración para el entorno de pruebas automatizadas (PHPUnit)
     https://styde.net/configuracion-para-el-entorno-de-pruebas-automatizadas-phpunit/
     - Desarrollo de clases y métodos con pruebas automatizadas
@@ -42,6 +43,7 @@ Material relacionado:
     https://styde.net/curso-de-git/
 
 Mis apuntes:
+
 Podemos mejorar nuestra estructura de trabajo de la carpeta tests creando los
 siguientes subdirectorios:
 	- features.

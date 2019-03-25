@@ -17,12 +17,14 @@ Creamos el método en la clase FeatureTestCase porque este método se relaciona
 con las pruebas funcionales o de aplicación.
 
 Material relacionado:
+
     - Curso de programación orientada a objetos con PHP
     https://styde.net/curso-de-programacion-orientada-a-objetos-con-php/
     - Desarrollo de métodos de prueba con el DomCrawler de Symfony
     https://styde.net/desarrollo-de-metodos-de-prueba-con-el-domcrawler-de-symfony/
 
 Mis apuntes:
+
 En la lección anterior desarrollamos una prueba que consistía en que, si un
 usuario trata de crear un post sin la información necesaria, este sería
 dirigido nuevamente a la misma página mostrando los mensajes de errores.

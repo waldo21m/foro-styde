@@ -62,6 +62,7 @@ Curso de Git y GitHub
 https://styde.net/curso-de-git/
 
 Material relacionado
+
     - Diferencia entre pruebas unitarias, de integración y de aplicación (TDD)
     lección #13
     - Verificar features ya desarrollados usando pruebas de regresión en Laravel
@@ -70,6 +71,7 @@ Material relacionado
     lección #15
 
 Mis apuntes:
+
 Vamos a partir en esta lección creando la prueba test_a_post_can_be_answered.
 Esta consiste en lo siguiente: tendremos un post que se le agregará un
 comentario. Este comentario será marcado como la respuesta correcta, por lo

@@ -49,12 +49,14 @@ usamos el método seePageIs que nos evalúa si el usuario está en la página
 que redirecciona dicha ruta.
 
 Material relacionado:
+
     - Cómo organizar las rutas de tus proyectos de Laravel
       https://styde.net/como-organizar-las-rutas-de-tus-proyectos-de-laravel/
     - Cambios en la estructura de carpetas y rutas en Laravel 5.3
       https://styde.net/cambios-en-la-estructura-de-carpetas-y-rutas-en-laravel-5-3/
 
 Mis apuntes:
+
 Cuando desarrollamos sin pruebas automatizadas, vivimos en el costante temor de
 que algo pueda salir mal. Por lo tanto, estamos constantemente probando en el
 navegador todas las posibilidades. Incluso tratamos de dañar nuestro sistema a

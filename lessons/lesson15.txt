@@ -26,6 +26,7 @@ esta oportunidad simplificamos la creación de posts en las pruebas con el méto
 de prueba createPost.
 
 Material relacionado:
+
     - Tips para simplificar tus pruebas automatizadas con Laravel
     https://styde.net/tips-para-simplificar-tus-pruebas-automatizadas-con-laravel/
     - Personalizar el directorio tests de una aplicación de Laravel 5.3

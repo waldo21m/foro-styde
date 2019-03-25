@@ -70,6 +70,7 @@ configuración de tu proyecto en Codeship. Además asegúrate que el comando par
 instalar Composer tenga la opción --prefer-dist.
 
 Enlaces relacionados:
+
 	- Sitios oficiales de servicios de Integración Continua: Codeship y Travis CI.
 	https://codeship.com/
 	https://travis-ci.org/
@@ -78,6 +79,7 @@ Enlaces relacionados:
 	https://bitbucket.org/product/
 
 Mis apuntes:
+
 Ingresamos al link https://app.codeship.com/projects, para ello, debemos tener
 una cuenta creada en Codeship y nuestro repositorio funcionando en GitLab,
 GitHub o cualquier otro. Luego, usamos los los comandos que indicaron en el curso

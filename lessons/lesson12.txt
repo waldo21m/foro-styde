@@ -66,6 +66,7 @@ sea la correcta. Para ello puedes reordenar las rutas y/o hacer uso de Rutas
 con filtros en Laravel (https://styde.net/rutas-con-filtros-en-laravel-5-1/).
 
 Material relacionado:
+
     - Creación de registros con TDD
     https://styde.net/creacion-de-registros-con-tdd/
     - Validación de datos de un formulario en Laravel 5.3 con TDD
@@ -76,6 +77,7 @@ Material relacionado:
     https://styde.net/rutas-con-filtros-en-laravel-5-1/
 
 Mis apuntes:
+
 En las lecciones anteriores trabajamos en el feature básico de la creación de
 un post y nos dimos cuenta de que, cuando un usuario crea un post, lo más
 lógico es redirigirlo al detalle del post. Sin embargo, aún no contamos con

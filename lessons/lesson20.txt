@@ -1,0 +1,95 @@
+Desarrollo de una política de acceso con pruebas de integración y TDD en Laravel 5.3
+
+Antes de trabajar con la prueba funcional para crear los controladores, rutas y
+vistas que permitirán marcar un comentario como respuesta a un post, vamos a
+desarrollar la política de acceso (policy) que nos ayudará a restringir que solo
+el usuario que creó el post pueda marcar una respuesta, esto lo lograremos
+usando TDD y pruebas de integración.
+
+Notas:
+
+Para crear la prueba en el directorio integration ejecuta:
+
+php artisan make:test integration/CommentPolicyTest
+
+Importante: No olvides agregar el trait DatabaseTransactions para que al finalizar
+la ejecución de las pruebas se borre de la base de datos los cambios realizados.
+https://styde.net/traits-para-el-desarrollo-de-pruebas-de-integracion-en-laravel/
+
+Podemos escribir $comment->post->user para obtener el usuario autor de un post
+gracias a que el modelo Comment está relacionado con el modelo Post a través del
+método post() y que a su vez el modelo Post está relacionado con el modelo User
+por el método user().
+
+El método assertTrue tiene un segundo argumento opcional con el cual podemos
+especificar el mensaje que queremos recibir en caso de que la comprobación
+falle.
+https://phpunit.de/manual/current/en/appendixes.assertions.html#appendixes.assertions.assertTrue
+
+Luego de escribir la prueba vamos a hacer que nos guíe en el desarrollo de la
+funcionalidad, ejecutando:
+
+vendor/bin/phpunit --filter CommentPolicyTest
+
+Puedes crear la política usando el comando:
+
+php artisan make:policy CommentPolicy
+
+Si es la primera política de la aplicación se creará un directorio donde todas
+las políticas serán ubicadas: app/Policies
+
+Hemos creado dos métodos de prueba relacionados con la política: uno para
+confirmar que pasando los datos correctos nos autoriza seleccionar o aceptar un
+comentario como respuesta a un post y el otro para verificar que pasando datos
+incorrectos no lo autoriza.
+
+Ejercicios:
+
+Desarrolla una prueba unitaria para comprobar que el método owns del modelo
+usuario funciona correctamente. Comparte tu código en los comentarios o realiza
+un Pull Request al repositorio del curso.
+
+Material relacionado:
+
+    - Creación, registro y uso de políticas de acceso (Policies) en Laravel 5.1
+    https://styde.net/creacion-registro-y-uso-de-politicas-de-acceso-policies-en-laravel-5-1/
+    - Autorización y políticas de acceso en Laravel 5.1
+    https://styde.net/autorizacion-y-politicas-de-acceso-en-laravel-5-1/
+    - Autorización y control de acceso (ACL) en Laravel 5.1: Primeros pasos
+    https://styde.net/autorizacion-y-control-de-acceso-acl-en-laravel-5-1-primeros-pasos/
+    - Introducción al componente de autorización y control de acceso (ACL) en Laravel 5.1
+    https://styde.net/introduccion-al-componente-de-autorizacion-acl-en-laravel-5-1/
+
+Mis apuntes:
+
+Crearemos un test llamado test_the_post_author_can_select_a_comment_as_an_answer,
+será una prueba de integración para la política de accesos que me permitirá
+saber cuando un comentario puede ser marcado como una respuesta de un post.
+Además crearemos el test_non_authors_cannot_select_a_comment_as_an_answer que es
+cuando los autores traten de seleccionar un comentario como respuesta que no
+sean autores de ese post.
+
+Generemos una prueba y generaremos un Policy. Un policy o una política de
+acceso se registra en un service provider y tiene un facade pero en el fondo
+no es más que una clase y no extiende de ninguna otra.
+
+Crearemos un método llamado accept que recibirá al usuario y el comentario.
+
+Podemos hacer trampa momentaneamente y devolver verdadero en dicho método pero
+no estaría del todo bien porque si pasamos a otro usuario que no es autor de
+dicho post, el método accept debería retornar falso.
+
+Hay una parte de la metodología de TDD que nos indica que nosotros debemos
+hacer el mínimo esfuerzo para que la prueba pase y es lo que hicimos incluso
+con la trampa. Entonces, para mantenernos en la metodología de TDD, otra
+solución sería exponer el bug que tenemos con el método accept() que es,
+hasta este punto, que siempre devuelve verdadero sin importar el autor. Es
+por eso que creamos la prueba test_non_authors_cannot_select_a_comment_as_an_answer
+
+La lógica del Policy es la siguiente. Si el usuario que fue enviado coincide
+con el user_id del post, eso quiere decir que él es el autor. Eso lo comprobamos
+con la siguiente línea de código
+	return $user->id === $comment->post->user_id;
+
+Sin embargo, esto último lo podemos refactorizar como se realizó en esta
+lección que es más orientado a objetos.

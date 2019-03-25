@@ -47,6 +47,7 @@ hablamos sobre el tema de Carbon.
 Con el método del componente de Carbon subDays le restas días a una fecha.
 
 Material relacionado
+
     - Paginación y carga de registros con seeders y model factories en Laravel
     https://styde.net/paginacion-y-carga-de-registros-con-seeders-y-model-factories-laravel/
     - Personalización del HTML de paginación con Blade en Laravel 5.3
@@ -55,6 +56,7 @@ Material relacionado
     https://styde.net/eloquent-orm-paginacion-de-registros/
 
 Mis apuntes:
+
 En laravel es muy sencillo crear la paginación. Creamos la prueba
 test_the_posts_are_paginated y veremos una forma en TDD de como probar la
 paginación de forma automática.
