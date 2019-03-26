@@ -1,0 +1,80 @@
+Marcar un comentario como respuesta de un post usando TDD en Laravel 5.3
+
+Una de las ventajas de desarrollar usando TDD es que te exige pensar y diseñar
+la aplicación haciendo solo lo necesario para que las pruebas pasen, es decir,
+que podemos dividir en partes una funcionalidad que queremos agregar y apoyarnos
+en las pruebas para comprobar que cada parte funcione correctamente.  De esta
+manera, en lecciones anteriores hemos trabajado con las pruebas de integración
+y de regresión para permitir que un comentario sea marcado como la respuesta
+del post y para crear una política de acceso que restrinja dicha acción
+únicamente al autor del post.
+
+Ahora en esta lección, nos dedicaremos finalmente a crear la funcionalidad para
+que el usuario pueda marcar un comentario como respuesta, usando TDD por medio
+de una prueba funcional o de aplicación, que nos guiará en el desarrollo de la
+vista, ruta y controlador necesarios.
+
+Notas:
+
+Empezamos creando la clase para la prueba funcional que se ubicará en el
+directorio features:
+
+php artisan make:test features/AcceptAnswertTest
+
+Importante: Recuerda que al ser una prueba funcional, esta clase debe extender
+de FeatureTestCase, la cual ya tiene incluido el trait DatabaseTransactions.
+
+Gracias a las relaciones de Eloquent entre los modelos Comment, Post y User
+podemos obtener el usuario autor de un post a través de uno de sus comentarios:
+
+$comment->post->user
+
+Al terminar de escribir la prueba la ejecutamos para que nos guíe en el
+desarrollo de la funcionalidad:
+
+vendor/bin/phpunit test_the_posts_author_can_accept_a_comment_as_the_posts_answer
+
+Acotación: Puedes consultar la lección Asociar rutas a modelos de Eloquent con
+Implicit Route Binding en caso de dudas sobre Implict Model Binding.
+https://styde.net/asociar-rutas-a-modelos-de-eloquent-con-implicit-route-binding/
+
+El desarrollo del método markAsAnswer para marcar un comentario como respuesta
+a un post lo realizamos en la lección Desarrollo con pruebas de integración y
+regresión en Laravel 5.3 (TDD) (lección #19) por tanto para esta lección ya no
+nos tenemos que preocupar si funciona correctamente pues ya tenemos una prueba
+que lo garantiza.
+
+Ejercicios:
+    - Crea la prueba para comprobar que los comentarios sean mostrados y paginados
+      en el detalle de un post.
+    - Escribe el código para añadir el autor de cada comentario de un post usando
+      TDD.
+
+Información: No dejes de compartir tu código haciendo un pull request al
+repositorio del curso.
+
+Material relacionado:
+
+    - Módulo de comentarios en Laravel 5.3 con TDD
+    lección #18
+    - Desarrollo con pruebas de integración y regresión en Laravel 5.3 (TDD)
+    lección #19
+    - Desarrollo de una política de acceso con pruebas de integración y TDD en
+      La ravel 5.3
+    lección #20
+
+Mis apuntes:
+
+No importa que tan largo sea el nombre del método de prueba, como solo se usará
+en un solo sitio, este puede ser lo más descriptivo posible y se parece más a
+un titulo o un encabezado.
+
+El objetivo de la prueba test_the_posts_author_can_accept_a_comment_as_the_posts_answer
+es crear un comentario. Este comentario tendrá un usuario asociado y si ese
+usuario inicia sesión, visita el post que él posee, podrá marcar mediante
+un botón que esa es la respuesta correcta... Esta acción nos redigirá nuevamente
+la página solo que la respuesta correcta tendrá una clase .answer y el comentario
+correcto. Por último, comprabaremos los cambios en la BDD.
+
+Fijate que es muchísimo más sencillo desarrollar un feature despues de haber
+realizado todas nuestras pruebas unitarias y nuestras pruebas de integración.
